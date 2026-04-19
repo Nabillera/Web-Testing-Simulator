@@ -1,0 +1,29 @@
+import { Button } from "../Button";
+import { TextInputField } from "../TextInputField";
+import { REQUIREMENTS } from "../../../DATA/Level_data";
+
+export function LevelZero() {
+  return (
+    <div className="flex flex-col w-[80%] items-center gap-y-[180px] p-[30px]">
+      <h2 className="font-pixelify font-bold text-[40px]">
+        Level 0: Polish the magnifying glass
+      </h2>
+      <div className="flex flex-col gap-y-[40px] w-[70%] items-center">
+        <div className="flex items-center gap-x-[40px] w-full justify-between">
+          <TextInputField
+            placeholder="Enter text here..."
+            outlineColor="#F3AE39"
+						width="570px"
+          />
+          <Button backColor="#F3AE39" width="200px">
+            Print
+          </Button>
+        </div>
+        <div className="flex gap-x-[20px] w-full font-inconsolata justify-start">
+          <span className="text-[32px]">Result here </span>
+          <span className="font-bold text-[32px]">HERE</span>
+        </div>
+      </div>
+    </div>
+  );
+}
