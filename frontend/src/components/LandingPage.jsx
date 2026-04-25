@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { TITLES } from "../../DATA/Level_data";
 import { COLORS } from "../../DATA/Level_data";
 import { Link } from "react-router-dom";
+import { PurchaseModal } from "./Level_1/PurchaseModal";
 
 export function LandingPage() {
   return (

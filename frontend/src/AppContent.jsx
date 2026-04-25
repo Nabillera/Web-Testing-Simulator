@@ -8,7 +8,6 @@ import { LevelOne } from "./components/Level_1/LevelOne";
 import { LevelTwo } from "./components/Level_2/LevelTwo";
 import { LevelThree } from "./components/Level_3/LevelThree";
 import { LevelFour } from "./components/Level_4/LevelFour";
-import { LevelFive } from "./components/Level_5/LevelFive";
 import { RequirementsModal } from "./components/RequirementsModal";
 import { ReportForm } from "./components/ReportForm";
 import { REQUIREMENTS } from "../DATA/Level_data";
@@ -42,7 +41,6 @@ export function AppContent({
         <Route path="/level-2" element={<LevelTwo />} />
         <Route path="/level-3" element={<LevelThree />} />
         <Route path="/level-4" element={<LevelFour />} />
-        <Route path="/level-5" element={<LevelFive />} />
       </Routes>
 
       {requirementsOpen &&

@@ -9,7 +9,7 @@ export function ReportForm({ onClose }) {
 
   return (
     <div className="absolute w-full h-full flex justify-center items-center bg-black/80 z-5">
-      <div className=" flex flex-col gap-y-[10px] p-[20px] w-[650px] self-center bg-[#D9D9D9]/85 rounded-[20px] border-2 ">
+      <div className=" flex flex-col gap-y-[10px] p-[20px] w-[650px] self-center bg-[#D9D9D9]/90 rounded-[20px] border-2 ">
         <div className="font-pixelify self-center text-[36px] font-bold">
           <span>CAUGHT THE </span>
           <span className="text-[#0A5598]">M</span>

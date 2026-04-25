@@ -3,8 +3,7 @@ export const TITLES = [
   "Don’t put all your bugs in one basket they say... or was it about eggs?",
   "Red, pink, orange, blue... There is no other clue",
   "A dog is a man’s best friend, but yours is intuition",
-  "No, I do NOT want notifications from your application",
-  "When life gives you lemons...",
+  "No, I do NOT want notifications from your application"
 ];
 
 export const COLORS = [
@@ -27,11 +26,7 @@ export const COLORS = [
   {
     color: "#0A5598",
     text: "white",
-  },
-  {
-    color: "#000000",
-    text: "white",
-  },
+  }
 ];
 
 export const REQUIREMENTS = [
@@ -39,6 +34,5 @@ export const REQUIREMENTS = [
   "Sample requirements #2",
   "Sample requirements #3",
   "Oops, no requirements provided for this level :(",
-  "Sample requirements #5",
-  "Sample requirements #6",
+  "Sample requirements #5"
 ];
