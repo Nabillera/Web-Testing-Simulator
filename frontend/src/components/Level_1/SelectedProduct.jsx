@@ -1,19 +1,36 @@
-export function SelectedProduct({ prodName, quantity, totalPrice }) {
+import PlusSign from "../../assets/plus-sign.svg";
+import MinusSign from "../../assets/minus-sign.svg";
+
+export function SelectedProduct({
+  prodName,
+  quantity,
+  totalPrice,
+  onIncrement,
+  onDecrement,
+}) {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-[65%] flex flex-col">
       <div className="flex justify-between">
-        <span className="font-bold text-[30px] font-inconsolata">
+        <span className="font-bold text-[32px] font-inconsolata">
           {prodName}
         </span>
-        <div className="flex items-center justify-around text-[32px] font-bold bg-[#F3AE39] border-2 rounded-[15px]">
-          <span className="w-[50px] text-center cursor-pointer">+</span>
-          <span className="h-[70%] w-[2px] bg-[#000000]" />
-          <span className="w-[50px] text-center cursor-pointer">-</span>
+        <div className="flex items-center bg-[#F3AE39] border-2 rounded-[15px] h-fit">
+          <img
+            onClick={() => onIncrement(prodName)}
+            src={PlusSign}
+            className="px-[13px] py-[10px] cursor-pointer"
+          />
+          <span className="h-[26px] w-[2px] bg-[#000000]" />
+          <img
+            onClick={() => onDecrement(prodName)}
+            src={MinusSign}
+            className="px-[13px] py-[15px] cursor-pointer"
+          />
         </div>
       </div>
-      <div>
-        <span>{quantity}</span>
-        <span>{totalPrice}</span>
+      <div className="flex gap-x-[20px] text-[20px]">
+        <span>{`x${quantity}`}</span>
+        <span>{`$${totalPrice}`}</span>
       </div>
     </div>
   );

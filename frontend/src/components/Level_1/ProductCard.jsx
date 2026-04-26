@@ -1,4 +1,4 @@
-export function ProductCard({ prodImage, color, prodName, prodPrice }) {
+export function ProductCard({ prodImage, color, prodName, prodPrice, onAdd }) {
   let bgColor = color + "40";
 
   return (
@@ -13,8 +13,9 @@ export function ProductCard({ prodImage, color, prodName, prodPrice }) {
         <span className="font-inconsolata font-bold text-[32px]">
           {prodName}
         </span>
-        <span className="font-inconsolata text-[24px]">{prodPrice}</span>
+        <span className="font-inconsolata text-[24px]">{`$${prodPrice}`}</span>
         <button
+          onClick={() => onAdd(prodName, prodPrice)}
           style={{ backgroundColor: color }}
           className="font-pixelify text-[24px] rounded-[10px] p-[10px] cursor-pointer"
         >
