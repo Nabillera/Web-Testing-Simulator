@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { REQUIREMENTS } from "../../../DATA/Level_data";
 import ProfilePicture from "../../assets/profile-picture.png";
-import Star from "../../assets/star.svg";
-import { Toggle } from "./Toggle";
+import { NotificationsSection } from "./NotificationsSection";
+import { ThemeSection } from "./ThemeSection";
+import { AccountInfoSection } from "./AccountInfoSection";
+import { DisplaySection } from "./DisplaySection";
+import { Button } from "../Button";
 
 export function LevelFour() {
   const [toggleOn, setToggleOn] = useState({
@@ -32,87 +35,45 @@ export function LevelFour() {
         backgroundColor: selectedTheme == "dark" ? "#282828" : "",
         color: selectedTheme == "dark" ? "#F2F2F2" : "#000000",
       }}
-      className="flex flex-col w-full items-center gap-y-[40px] p-[30px]"
+      className="flex flex-col w-full items-center gap-y-[10px] p-[15px]"
     >
       <h2 className="font-pixelify font-bold text-[40px]">
         Level 4: No, I do NOT want notifications
       </h2>
-      <div className="flex flex-col items-start w-full gap-y-[50px]">
+      <div className="flex flex-col items-start w-full gap-y-[10px]">
         <div className="flex gap-x-[30px]">
           <img src={ProfilePicture} className="rounded-full w-[150px]" />
           <div className="flex flex-col justify-center gap-y-[10px]">
             <div className="flex gap-x-[30px] items-center">
-              <span className="font-pixelify text-[32px] font-bold">
+              <span className="font-pixelify text-[28px] font-bold">
                 Manuelo Costa
               </span>
-              <span className="font-inconsolata font-bold text-[#0A5598] text-[22px] cursor-pointer">
+              <span className="font-inconsolata font-bold text-[#0A5598] text-[20px] cursor-pointer hover:text-[#0A5598]/50">
                 Edit
               </span>
             </div>
-            <span className="font-inconsolata text-[24px]">
+            <span className="font-inconsolata text-[20px]">
               mcosta@kanudos.com
             </span>
           </div>
         </div>
-        <div className="flex gap-x-[30px]">
-          <div className="w-[500px] font-inconsolata flex flex-col gap-y-[20px] p-[15px] border-b-[#D9D9D9] border-b-2">
-            <div className="flex justify-between items-center">
-              <span className="text-[32px] font-bold">Notifications</span>
-              <Toggle
-                type="general"
-                isActive={toggleOn.general}
-                onToggle={handleToggle}
-              />
-            </div>
-            <div className="flex justify-between items-center p-[7px]">
-              <span className="text-[26px] ">Push notifications</span>
-              <Toggle
-                type="push"
-                isActive={toggleOn.push}
-                onToggle={handleToggle}
-              />
-            </div>
-            <div className="flex justify-between items-center p-[7px]">
-              <span className="text-[26px]">SMS notifications</span>
-              <Toggle
-                type="sms"
-                isActive={toggleOn.sms}
-                onToggle={handleToggle}
-              />
-            </div>
-            <div className="flex justify-between items-center p-[7px]">
-              <span className="text-[26px] ">Email notifications</span>
-              <Toggle
-                type="email"
-                isActive={toggleOn.email}
-                onToggle={handleToggle}
-              />
+        <div className="w-full flex justify-between">
+          <div className="w-[30%]">
+            <NotificationsSection toggleOn={toggleOn} onToggle={handleToggle} />
+            <ThemeSection
+              selectedTheme={selectedTheme}
+              onSetTheme={handleSetTheme}
+            />
+          </div>
+          <div className="w-[30%] flex flex-col justify-between">
+            <AccountInfoSection />
+            <div className="flex flex-col items-center">
+              <Button width="50%" backColor="#C1011A" textColor="#F2F2F2" textSize="24px">Save Changes</Button>
+              <span className="font-inconsolata text-[#0A5598] text-[22px] font-bold hover:text-[#0A5598]/50 cursor-pointer">Refresh Page</span>
             </div>
           </div>
-
-          <div className="w-[500px] font-inconsolata flex flex-col gap-y-[20px] p-[15px] border-b-[#D9D9D9] border-b-2">
-            <span className="font-bold text-[32px]">Theme</span>
-            <div
-              onClick={() => handleSetTheme("light")}
-              className="flex items-center justify-between p-[7px] cursor-pointer rounded-[5px] hover:bg-[#D9D9D9]/30"
-            >
-              <span className="text-[26px]">Light</span>
-              {selectedTheme == "light" && <img src={Star} />}
-            </div>
-            <div
-              onClick={() => handleSetTheme("dark")}
-              className="flex items-center justify-between p-[7px] cursor-pointer rounded-[5px] hover:bg-[#D9D9D9]/30"
-            >
-              <span className="text-[26px]">Dark</span>
-              {selectedTheme == "dark" && <img src={Star} />}
-            </div>
-            <div
-              onClick={() => handleSetTheme("surprise")}
-              className="flex items-center justify-between p-[7px] cursor-pointer rounded-[5px] hover:bg-[#D9D9D9]/30"
-            >
-              <span className="text-[26px]">Surprise me</span>
-              {selectedTheme == "surprise" && <img src={Star} />}
-            </div>
+          <div className="w-[30%]">
+            <DisplaySection />
           </div>
         </div>
       </div>
