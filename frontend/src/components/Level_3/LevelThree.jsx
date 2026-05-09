@@ -1,4 +1,4 @@
-import { REQUIREMENTS } from "../../../DATA/Level_data";
+import { REQUIREMENTS } from "../../../DATA/Level_requirements";
 import { Button } from "../Button";
 import { TextField } from "./TextField";
 import { Checkbox } from "./Checkbox";

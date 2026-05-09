@@ -1,6 +1,6 @@
 import { ColorCard } from "./ColorCard";
 import { ELECTRIC_COLORS, PASTEL_COLORS } from "../../../DATA/Level-2_colors";
-import { REQUIREMENTS } from "../../../DATA/Level_data";
+import { REQUIREMENTS } from "../../../DATA/Level_requirements";
 import { Dropdown } from "../Dropdown";
 import { useState } from "react";
 

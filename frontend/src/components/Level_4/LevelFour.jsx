@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { REQUIREMENTS } from "../../../DATA/Level_data";
+import { REQUIREMENTS } from "../../../DATA/Level_requirements";
 import ProfilePicture from "../../assets/profile-picture.png";
 import { NotificationsSection } from "./NotificationsSection";
 import { ThemeSection } from "./ThemeSection";

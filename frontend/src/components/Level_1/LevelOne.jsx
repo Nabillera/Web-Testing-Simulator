@@ -1,6 +1,6 @@
 import { ProductCard } from "./ProductCard";
 import { Button } from "../Button";
-import { REQUIREMENTS } from "../../../DATA/Level_data";
+import { REQUIREMENTS } from "../../../DATA/Level_requirements";
 import { PRODUCTS } from "../../../DATA/Level-1_products";
 import { SelectedProduct } from "./SelectedProduct";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 import { Button } from "../Button";
 import { TextInputField } from "../TextInputField";
-import { REQUIREMENTS } from "../../../DATA/Level_data";
+import { REQUIREMENTS } from "../../../DATA/Level_requirements";
 import { useState } from "react";
 
 export function LevelZero() {

@@ -10,7 +10,7 @@ import { LevelThree } from "./components/Level_3/LevelThree";
 import { LevelFour } from "./components/Level_4/LevelFour";
 import { RequirementsModal } from "./components/RequirementsModal";
 import { ReportForm } from "./components/ReportForm";
-import { REQUIREMENTS } from "../DATA/Level_data";
+import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/WarningModal";
 
 export function AppContent({
