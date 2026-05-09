@@ -1,6 +1,7 @@
 export function TextInputField({
   label,
   placeholder,
+  maxCharacters,
   outlineColor,
   width,
   textSize,
@@ -31,6 +32,7 @@ export function TextInputField({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          maxLength={maxCharacters}
           style={{ outlineColor: outlineColor, fontSize: textSize || "24px" }}
           className="font-inconsolata border-2 rounded-[10px] p-[15px] bg-white placeholder:tracking-widest"
         />
