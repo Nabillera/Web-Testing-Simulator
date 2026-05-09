@@ -1,8 +1,44 @@
+import { useState } from "react";
 import { Button } from "./Button";
 import { Dropdown } from "./Dropdown";
 import { TextInputField } from "./TextInputField";
 
 export function ReportForm({ onClose }) {
+  const [formData, setFormData] = useState({
+    title: "",
+    stepsToReproduce: "",
+    actualResult: "",
+    expectedResult: "",
+    severity: "",
+    type: "",
+    level: "0",
+  });
+
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/reports", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log("Report added to DB:", data);
+
+      onClose();
+    } catch (error) {
+      console.log("Error occured:", error);
+    }
+  };
+
   const handleCloseModal = () => {
     onClose();
   };
@@ -20,52 +56,75 @@ export function ReportForm({ onClose }) {
         </div>
         <div className="flex flex-col">
           <TextInputField
+            onChange={(event) => handleChange("title", event.target.value)}
             label="Summary"
             placeholder="Short summary of the bug"
             outlineColor="#0A5598"
-            textSize="20px"
+            textSize="16px"
           />
-          <div className="flex flex-col">
-            <label className="font-inconsolata text-[20px] font-bold">
-              More Details
-            </label>
-            <textarea
-              placeholder="Tell us a few fun facts about yourself!"
-              className="font-inconsolata border-2 rounded-[10px] p-[7px] bg-white outline-[#0A5598] text-[20px] min-h-[130px]"
-            />
-          </div>
           <TextInputField
+            onChange={(event) =>
+              handleChange("stepsToReproduce", event.target.value)
+            }
+            label="Steps to Reproduce"
+            placeholder="Steps to follow to reproduce the bug"
+            outlineColor="#0A5598"
+            textSize="16px"
+            multiline={true}
+            rows={5}
+          />
+          <TextInputField
+            onChange={(event) =>
+              handleChange("actualResult", event.target.value)
+            }
             label="Actual Result"
             placeholder="Enter the actual behaviour of the element"
             outlineColor="#0A5598"
-            textSize="20px"
+            textSize="16px"
+            multiline={true}
           />
           <TextInputField
+            onChange={(event) =>
+              handleChange("expectedResult", event.target.value)
+            }
             label="Expected Result"
             placeholder="Enter the expected behaviour"
             outlineColor="#0A5598"
-            textSize="20px"
+            textSize="16px"
+            multiline={true}
           />
         </div>
         <div className="flex justify-between">
           <Dropdown
+            value={formData.severity}
+            onSelect={(value) => handleChange("severity", value)}
             options={["Critical", "Major", "Average", "Low"]}
             label="Severity"
-            textSize="20px"
+            textSize="16px"
             width="295px"
+            placeholder="Set bug severity"
           />
           <Dropdown
+            value={formData.type}
+            onSelect={(value) => handleChange("type", value)}
             options={["GUI", "Functional"]}
             label="Type"
-            textSize="20px"
+            textSize="16px"
             width="295px"
+            placeholder="Set bug type"
           />
         </div>
         <div className="flex gap-x-[45px]">
-          <Button backColor="#C1011A" onHandleModal={handleCloseModal}>
+          <Button
+            onClick={handleCloseModal}
+            backColor="#C1011A"
+            textSize="24px"
+          >
             Cancel
           </Button>
-          <Button backColor="#C1011A">Submit</Button>
+          <Button onClick={handleSubmit} backColor="#C1011A" textSize="24px">
+            Submit
+          </Button>
         </div>
       </div>
     </div>

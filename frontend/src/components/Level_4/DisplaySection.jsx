@@ -11,7 +11,7 @@ export function DisplaySection() {
         </span>
         <div className="w-full flex flex-col items-center gap-y-[30px] pb-[10px]">
           <div className="flex justify-center items-center w-[70px] h-[70px] bg-[#D9D9D9]">
-            <span className="text-[22px]">
+            <span className="text-[22px] text-[#000000]">
               ICON
               <br />
               SIZE

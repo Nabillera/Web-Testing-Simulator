@@ -4,11 +4,11 @@ export function Button({
   textColor,
   width,
   textSize,
-  onHandleModal,
+  onClick,
 }) {
   return (
     <button
-      onClick={onHandleModal}
+      onClick={onClick}
       style={{
         backgroundColor: backColor,
         color: textColor,

@@ -7,7 +7,7 @@ export function PurchaseModal({ onHandleModal }) {
         Purchase <br /> Successful!
       </p>
       <Button
-        onHandleModal={onHandleModal}
+        onClick={onHandleModal}
         backColor="#F3AE39"
         textSize="26px"
         width="50%"

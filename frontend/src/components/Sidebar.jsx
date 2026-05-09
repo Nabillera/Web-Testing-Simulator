@@ -34,7 +34,7 @@ export function Sidebar({ onViewRequirements, onViewReport }) {
       </div>
       <div className="flex flex-col gap-y-[25px] pb-[20px]">
         <Button
-          onHandleModal={handleRequirementsModal}
+          onClick={handleRequirementsModal}
           backColor="#C1011A"
           textSize="20px"
         >
@@ -42,7 +42,7 @@ export function Sidebar({ onViewRequirements, onViewReport }) {
         </Button>
 
         <Button
-          onHandleModal={handleReportForm}
+          onClick={handleReportForm}
           backColor="#C1011A"
           textSize="20px"
         >

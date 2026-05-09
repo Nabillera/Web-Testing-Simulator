@@ -8,16 +8,17 @@ export function Dropdown({
   options,
   onSelect,
   textSize,
+  value,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenDropdown = () => {
-    setIsOpen(() => !isOpen);
+    setIsOpen((prev) => !prev);
   };
 
-  const handleSelectPalette = (palette) => {
-    onSelect(palette);
-    handleOpenDropdown();
+  const handleSelectOption = (option) => {
+    onSelect(option);
+    setIsOpen(false);
   };
 
   return (
@@ -34,8 +35,11 @@ export function Dropdown({
           style={{ width: width }}
           className={`${isOpen ? "rounded-t-[10px] border-b-0 border-[#0A5598]" : "rounded-[10px]"} flex justify-between w-full bg-[#FFFFFF] p-[15px] gap-x-[40px] border-2 cursor-pointer`}
         >
-          <span style={{ fontSize: textSize }} className="text-[24px]">
-            {placeholder}
+          <span
+            style={{ fontSize: textSize }}
+            className="text-[24px] font-inconsolata"
+          >
+            {value ? value : placeholder}
           </span>
           <img src={Arrow} className={isOpen ? "rotate-x-180" : ""} />
         </div>
@@ -45,8 +49,9 @@ export function Dropdown({
           {options.map((option) => {
             return (
               <li
-                onClick={() => handleSelectPalette(option)}
-                className="text-[20px] p-[3px] cursor-pointer"
+                key={option}
+                onClick={() => handleSelectOption(option)}
+                className="text-[18px] p-[3px] cursor-pointer font-inconsolata"
               >
                 {option}
               </li>

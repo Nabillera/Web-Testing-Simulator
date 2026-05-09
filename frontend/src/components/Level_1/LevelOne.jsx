@@ -113,11 +113,7 @@ export function LevelOne() {
             <span className="font-bold text-[32px]">Your total:</span>
             <span className="text-[32px]">{`$${totalPrice}`}</span>
           </div>
-          <Button
-            onHandleModal={handleShowModal}
-            backColor="#C1011A"
-            width="250px"
-          >
+          <Button onClick={handleShowModal} backColor="#C1011A" width="250px">
             Purchase
           </Button>
         </div>
