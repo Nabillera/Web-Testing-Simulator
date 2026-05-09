@@ -25,7 +25,7 @@ export function DisplaySection() {
           Use the slider to adjust icon brightness to your liking
         </span>
         <div className="w-full flex flex-col items-center gap-y-[30px] pb-[10px]">
-          <div className="flex justify-center items-center w-[70px] h-[70px] bg-[#000000] text-[#F2F2F2]">
+          <div className="flex justify-center items-center w-[70px] h-[70px] bg-[#000000]/50 text-[#F2F2F2]">
             <span className="text-[22px]">
               BRIGH
               <br />

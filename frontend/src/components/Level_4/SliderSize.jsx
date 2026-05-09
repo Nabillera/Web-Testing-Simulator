@@ -1,7 +1,20 @@
+import { useState } from "react";
+
 export function SliderSize() {
+  const [sliderValue, setSliderValue] = useState(50);
+  const thumbSize = 20 + (sliderValue / 100) * 20;
   return (
-    <div className="relative bg-[#0A5598]/50 h-[6px] w-full rounded-full">
-      <div className="absolute left-[calc(50%-20px)] top-[-19px] w-[40px] h-[40px] rounded-full bg-[#0A5598] cursor-pointer"></div>
-    </div>
+    <>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        id="size-slider"
+        value={sliderValue}
+        onChange={(event) => setSliderValue(Number(event.target.value))}
+        style={{ "--thumb-size": `${thumbSize}px` }}
+        className="w-full accent-[#0A5598] bg-[#D9D9D9] rounded-full h-2 cursor-pointer"
+      />
+    </>
   );
 }

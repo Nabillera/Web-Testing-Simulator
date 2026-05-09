@@ -1,7 +1,20 @@
+import { useState } from "react";
+
 export function SliderBrightness() {
+  const [sliderValue, setSliderValue] = useState(50);
+  const thumbOpacity = 0.1 + (sliderValue / 100) * 0.9;
   return (
-    <div className="relative bg-[#C1011A]/50 h-[6px] w-full rounded-full">
-      <div className="absolute left-[calc(50%-20px)] top-[-19px] w-[40px] h-[40px] rounded-full bg-[#C1011A] cursor-pointer"></div>
-    </div>
+    <>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        id="brightness-slider"
+        value={sliderValue}
+        onChange={(event) => setSliderValue(Number(event.target.value))}
+        style={{ "--thumb-opacity": thumbOpacity }}
+        className="w-full accent-[#C1011A] bg-[#D9D9D9] rounded-full h-2 cursor-pointer"
+      />
+    </>
   );
 }
