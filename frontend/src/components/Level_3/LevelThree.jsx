@@ -7,28 +7,37 @@ import { Dropdown } from "../Dropdown";
 import { useState } from "react";
 import { VALIDATION } from "../../../DATA/Level-3_regex";
 
+const INITIAL_DROPDOWN_VALUES = {
+  gender: "",
+  colour: "",
+};
+
+const INITIAL_RADIO_VALUES = {
+  allergies: "",
+  music: "",
+  preference: "",
+};
+
+const INITIAL_FIELD_VALUES = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  birthday: "",
+  number: "",
+  motto: "",
+  details: "",
+};
+
 export function LevelThree() {
-  const [dropdownValues, setDropdownValues] = useState({
-    gender: "",
-    colour: "",
-  });
+  const [dropdownValues, setDropdownValues] = useState(INITIAL_DROPDOWN_VALUES);
 
-  const [radioValues, setRadioValues] = useState({
-    allergies: "",
-    music: "",
-    preference: "",
-  });
+  const [radioValues, setRadioValues] = useState(INITIAL_RADIO_VALUES);
 
-  const [fieldValues, setFieldValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    birthday: "",
-    number: "",
-    motto: "",
-    details: "",
-  });
+  const [fieldValues, setFieldValues] = useState(INITIAL_FIELD_VALUES);
+
+  const [resetKey, setResetKey] = useState(0);
+
   const handleSelectDropdown = (field, value) => {
     setDropdownValues((prev) => ({ ...prev, [field]: value }));
   };
@@ -39,6 +48,13 @@ export function LevelThree() {
 
   const handleSetField = (field, value) => {
     setFieldValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleClearForm = () => {
+    setDropdownValues(INITIAL_DROPDOWN_VALUES);
+    setRadioValues(INITIAL_RADIO_VALUES);
+    setFieldValues(INITIAL_FIELD_VALUES);
+    setResetKey((prev) => prev + 1);
   };
 
   return (
@@ -57,8 +73,16 @@ export function LevelThree() {
 
         <div className="w-full flex flex-col gap-y-[10px]">
           <div className="flex gap-x-[20px]">
-            <TextField label="First Name" placeholder="Enter your first name" />
-            <TextField label="Last Name" placeholder="Enter your last name" />
+            <TextField
+              key={`first-name-${resetKey}`}
+              label="First Name"
+              placeholder="Enter your first name"
+            />
+            <TextField
+              key={`last-name-${resetKey}`}
+              label="Last Name"
+              placeholder="Enter your last name"
+            />
             <Dropdown
               value={dropdownValues.gender}
               label="Gender"
@@ -70,6 +94,7 @@ export function LevelThree() {
           </div>
           <div className="flex gap-x-[20px]">
             <TextField
+              key={`email-${resetKey}`}
               label="Email Address"
               placeholder="Enter your email address"
               value={fieldValues.email}
@@ -78,6 +103,7 @@ export function LevelThree() {
               onSave={(value) => handleSetField("email", value)}
             />
             <TextField
+              key={`phone-${resetKey}`}
               label="Phone number"
               placeholder="Enter your phone number"
               value={fieldValues.phone}
@@ -86,6 +112,7 @@ export function LevelThree() {
               onSave={(value) => handleSetField("phone", value)}
             />
             <TextField
+              key={`birthday-${resetKey}`}
               label="Date of Birth"
               placeholder="DD/MM/YYYY"
               value={fieldValues.birthday}
@@ -98,6 +125,8 @@ export function LevelThree() {
             <TextField
               label="Favourite Number"
               placeholder="Enter your favourite number"
+              value={fieldValues.number}
+              onSave={(value) => handleSetField("number", value)}
             />
             <Dropdown
               value={dropdownValues.colour}
@@ -173,7 +202,11 @@ export function LevelThree() {
             </div>
           </div>
           <div className="flex gap-x-[20px]">
-            <TextField label="Life Motto" placeholder="Enter your life motto" />
+            <TextField
+              key={`motto-${resetKey}`}
+              label="Life Motto"
+              placeholder="Enter your life motto"
+            />
             <div className="flex flex-col w-full max-w-[439px]">
               <span className="font-inconsolata text-[20px] font-bold">
                 Your Preference
@@ -204,6 +237,7 @@ export function LevelThree() {
         </div>
         <div className="flex gap-x-[150px]">
           <Button
+            onClick={handleClearForm}
             backColor="#0A5598"
             textColor="#FFFFFF"
             textSize="20px"
