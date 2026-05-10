@@ -64,7 +64,7 @@ export function LevelOne() {
     setSelectedProducts((prevProducts) => {
       const updatedList = [...prevProducts];
       const index = updatedList.findIndex((prod) => prod.name === name);
-      if (updatedList[index].quantity == 0) return prevProducts;
+      if (updatedList[index].quantity <= 0) return prevProducts;
       const newQuantity = updatedList[index].quantity - 1;
       updatedList[index] = {
         ...updatedList[index],
