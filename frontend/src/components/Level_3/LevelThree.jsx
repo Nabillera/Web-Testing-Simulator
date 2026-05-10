@@ -104,7 +104,7 @@ export function LevelThree() {
             />
             <TextField
               key={`phone-${resetKey}`}
-              label="Phone number"
+              label="Phone Number"
               placeholder="Enter your phone number"
               value={fieldValues.phone}
               validator={VALIDATION.phone}
@@ -130,10 +130,10 @@ export function LevelThree() {
             />
             <Dropdown
               value={dropdownValues.colour}
-              label="Favourite colour"
+              label="Favorite Colour"
               options={["Green", "Red", "Blue"]}
               textSize="20px"
-              placeholder="Select a color"
+              placeholder="Select a colour"
               onSelect={(value) => handleSelectDropdown("colour", value)}
             />
             <div className="flex flex-col w-full">
@@ -161,41 +161,54 @@ export function LevelThree() {
           </div>
           <div className="flex flex-col justify-between">
             <span className="font-inconsolata text-[20px] font-bold">
-              Favourite Music Genre
+              Favourite Music Genre{" "}
+              <span className="text-[#000000]/60 text-[16px]">
+                (select all that apply)
+              </span>
             </span>
             <div className="flex justify-between">
               <Checkbox
-                label="Option 1"
+                label="Pop"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 2"
+                label="Rock"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 3"
+                label="Jazz"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 4"
+                label="Hip-Hop"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 5"
+                label="EDM"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 6"
+                label="R&B"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
               <Checkbox
-                label="Option 7"
+                label="Metal"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Classical"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Country"
                 onSelect={(value) => handleSelectRadio("music", value)}
                 selectedOption={radioValues.music}
               />
