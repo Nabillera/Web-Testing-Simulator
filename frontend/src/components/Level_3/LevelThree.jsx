@@ -3,8 +3,19 @@ import { Button } from "../Button";
 import { TextField } from "./TextField";
 import { Checkbox } from "./Checkbox";
 import { RadioButton } from "./RadioButton";
+import { Dropdown } from "../Dropdown";
+import { useState } from "react";
 
 export function LevelThree() {
+  const [dropdownValues, setDropdownValues] = useState({
+    gender: "",
+    colour: "",
+  });
+
+  const handleSelect = (field, value) => {
+    setDropdownValues((prev) => ({ ...prev, [field]: value }));
+  };
+
   return (
     <div className="flex flex-col w-[80%] items-center p-[20px] pt-[10px]">
       <h2 className="font-pixelify font-bold text-[40px]">
@@ -23,30 +34,41 @@ export function LevelThree() {
           <div className="flex gap-x-[20px]">
             <TextField label="First Name" placeholder="Enter your first name" />
             <TextField label="Last Name" placeholder="Enter your last name" />
-            <TextField label="Gender" placeholder="Enter your first name" />
+            <Dropdown
+              value={dropdownValues.gender}
+              label="Gender"
+              options={["Male", "Female", "Chair"]}
+              textSize="20px"
+              placeholder="Select your gender"
+              onSelect={(value) => handleSelect("gender", value)}
+            />
           </div>
           <div className="flex gap-x-[20px]">
             <TextField
               label="Email Address"
-              placeholder="Enter your first name"
+              placeholder="Enter your email address"
             />
             <TextField
               label="Phone number"
-              placeholder="Enter your first name"
+              placeholder="Enter your phone number"
             />
             <TextField
               label="Date of Birth"
-              placeholder="Enter your first name"
+              placeholder="Enter your birth date"
             />
           </div>
           <div className="flex gap-x-[20px]">
             <TextField
               label="Favourite Number"
-              placeholder="Enter your first name"
+              placeholder="Enter your favourite number"
             />
-            <TextField
-              label="Favourite Color"
-              placeholder="Enter your first name"
+            <Dropdown
+              value={dropdownValues.colour}
+              label="Favourite colour"
+              options={["Green", "Red", "Blue"]}
+              textSize="20px"
+              placeholder="Select a color"
+              onSelect={(value) => handleSelect("colour", value)}
             />
             <div className="flex flex-col w-full">
               <span className="font-inconsolata text-[20px] font-bold">
@@ -74,7 +96,7 @@ export function LevelThree() {
             </div>
           </div>
           <div className="flex gap-x-[20px]">
-            <TextField label="Life Motto" placeholder="Enter your first name" />
+            <TextField label="Life Motto" placeholder="Enter your life motto" />
             <div className="flex flex-col w-full max-w-[439px]">
               <span className="font-inconsolata text-[20px] font-bold">
                 Your Preference
@@ -96,10 +118,20 @@ export function LevelThree() {
           </div>
         </div>
         <div className="flex gap-x-[150px]">
-          <Button backColor="#0A5598" textColor="#FFFFFF" textSize="20px" width="240px">
+          <Button
+            backColor="#0A5598"
+            textColor="#FFFFFF"
+            textSize="20px"
+            width="240px"
+          >
             Clear
           </Button>
-          <Button backColor="#0A5598" textColor="#FFFFFF" textSize="20px" width="240px">
+          <Button
+            backColor="#0A5598"
+            textColor="#FFFFFF"
+            textSize="20px"
+            width="240px"
+          >
             Submit
           </Button>
         </div>

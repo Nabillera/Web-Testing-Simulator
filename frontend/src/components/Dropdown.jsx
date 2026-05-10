@@ -22,7 +22,7 @@ export function Dropdown({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <label
         style={{ fontSize: textSize }}
         className="font-bold text-[24px] font-inconsolata"
@@ -33,7 +33,7 @@ export function Dropdown({
         <div
           onClick={handleOpenDropdown}
           style={{ width: width }}
-          className={`${isOpen ? "rounded-t-[10px] border-b-0 border-[#0A5598]" : "rounded-[10px]"} flex justify-between w-full bg-[#FFFFFF] p-[15px] gap-x-[40px] border-2 cursor-pointer`}
+          className={`${isOpen ? "rounded-t-[10px] border-b-0 border-[#0A5598]" : "rounded-[10px]"} flex justify-between w-full bg-[#FFFFFF] p-[7px] gap-x-[40px] h-[48px] border-2 cursor-pointer`}
         >
           <span
             style={{ fontSize: textSize }}
@@ -41,7 +41,10 @@ export function Dropdown({
           >
             {value ? value : placeholder}
           </span>
-          <img src={Arrow} className={isOpen ? "rotate-x-180" : ""} />
+          <img
+            src={Arrow}
+            className={`${isOpen ? "rotate-x-180" : ""} w-[24px]`}
+          />
         </div>
         <ul
           className={`${isOpen ? "" : "hidden"} absolute w-full bg-[#FFFFFF] border-2 border-t-0 border-[#0A5598] p-[15px] pt-0 rounded-b-[10px]`}
