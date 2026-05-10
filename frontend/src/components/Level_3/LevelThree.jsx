@@ -5,6 +5,7 @@ import { Checkbox } from "./Checkbox";
 import { RadioButton } from "./RadioButton";
 import { Dropdown } from "../Dropdown";
 import { useState } from "react";
+import { VALIDATION } from "../../../DATA/Level-3_regex";
 
 export function LevelThree() {
   const [dropdownValues, setDropdownValues] = useState({
@@ -18,12 +19,26 @@ export function LevelThree() {
     preference: "",
   });
 
+  const [fieldValues, setFieldValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    birthday: "",
+    number: "",
+    motto: "",
+    details: "",
+  });
   const handleSelectDropdown = (field, value) => {
     setDropdownValues((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSelectRadio = (field, value) => {
     setRadioValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSetField = (field, value) => {
+    setFieldValues((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
