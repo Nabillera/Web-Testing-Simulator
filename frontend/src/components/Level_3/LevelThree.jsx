@@ -57,6 +57,18 @@ export function LevelThree() {
     setResetKey((prev) => prev + 1);
   };
 
+  const handleSubmitForm = () => {
+    const userData = {
+      ...fieldValues,
+      ...dropdownValues,
+      ...radioValues,
+    };
+
+    console.log(
+      `Form submitted successfully! \n${JSON.stringify(userData, null, 2)}`,
+    );
+  };
+
   return (
     <div className="flex flex-col w-[80%] items-center p-[20px] pt-[10px]">
       <h2 className="font-pixelify font-bold text-[40px]">
@@ -77,11 +89,13 @@ export function LevelThree() {
               key={`first-name-${resetKey}`}
               label="First Name"
               placeholder="Enter your first name"
+              onSave={(value) => handleSetField("firstName", value)}
             />
             <TextField
               key={`last-name-${resetKey}`}
               label="Last Name"
               placeholder="Enter your last name"
+              onSave={(value) => handleSetField("lastName", value)}
             />
             <Dropdown
               value={dropdownValues.gender}
@@ -219,6 +233,7 @@ export function LevelThree() {
               key={`motto-${resetKey}`}
               label="Life Motto"
               placeholder="Enter your life motto"
+              onSave={(value) => handleSetField("motto", value)}
             />
             <div className="flex flex-col w-full max-w-[439px]">
               <span className="font-inconsolata text-[20px] font-bold">
@@ -259,6 +274,7 @@ export function LevelThree() {
             Clear
           </Button>
           <Button
+            onClick={handleSubmitForm}
             backColor="#0A5598"
             textColor="#FFFFFF"
             textSize="20px"
