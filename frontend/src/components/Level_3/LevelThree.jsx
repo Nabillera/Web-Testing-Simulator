@@ -12,8 +12,18 @@ export function LevelThree() {
     colour: "",
   });
 
-  const handleSelect = (field, value) => {
+  const [radioValues, setRadioValues] = useState({
+    allergies: "",
+    music: "",
+    preference: "",
+  });
+
+  const handleSelectDropdown = (field, value) => {
     setDropdownValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSelectRadio = (field, value) => {
+    setRadioValues((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -21,7 +31,7 @@ export function LevelThree() {
       <h2 className="font-pixelify font-bold text-[40px]">
         Level 3: Intuition is your best friend
       </h2>
-      <div className="flex flex-col gap-y-[20px] w-[95%] items-center bg-[#D9D9D9] border-2 rounded-[20px] p-[15px] shadow-[8px_8px_15px_rgba(0,0,0,0.4)]">
+      <div className="flex flex-col gap-y-[10px] w-[95%] items-center bg-[#D9D9D9] border-2 rounded-[20px] p-[15px] shadow-[8px_8px_15px_rgba(0,0,0,0.4)]">
         <div className="font-pixelify text-[40px] font-bold">
           <span>LET'S BREAK THE </span>
           <span className="text-[#F3AE39]">I</span>
@@ -40,7 +50,7 @@ export function LevelThree() {
               options={["Male", "Female", "Chair"]}
               textSize="20px"
               placeholder="Select your gender"
-              onSelect={(value) => handleSelect("gender", value)}
+              onSelect={(value) => handleSelectDropdown("gender", value)}
             />
           </div>
           <div className="flex gap-x-[20px]">
@@ -68,16 +78,28 @@ export function LevelThree() {
               options={["Green", "Red", "Blue"]}
               textSize="20px"
               placeholder="Select a color"
-              onSelect={(value) => handleSelect("colour", value)}
+              onSelect={(value) => handleSelectDropdown("colour", value)}
             />
             <div className="flex flex-col w-full">
               <span className="font-inconsolata text-[20px] font-bold">
                 Do you have any allergies?
               </span>
               <div className="flex items-center h-full font-inconsolata justify-between">
-                <RadioButton label="Yes" />
-                <RadioButton label="No" />
-                <RadioButton label="Who knows?" />
+                <RadioButton
+                  label="Yes"
+                  onSelect={(value) => handleSelectRadio("allergies", value)}
+                  selectedOption={radioValues.allergies}
+                />
+                <RadioButton
+                  label="No"
+                  onSelect={(value) => handleSelectRadio("allergies", value)}
+                  selectedOption={radioValues.allergies}
+                />
+                <RadioButton
+                  label="Who knows?"
+                  onSelect={(value) => handleSelectRadio("allergies", value)}
+                  selectedOption={radioValues.allergies}
+                />
               </div>
             </div>
           </div>
@@ -86,13 +108,41 @@ export function LevelThree() {
               Favourite Music Genre
             </span>
             <div className="flex justify-between">
-              <Checkbox label="Option 1" />
-              <Checkbox label="Option 2" />
-              <Checkbox label="Option 3" />
-              <Checkbox label="Option 4" />
-              <Checkbox label="Option 5" />
-              <Checkbox label="Option 6" />
-              <Checkbox label="Option 7" />
+              <Checkbox
+                label="Option 1"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 2"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 3"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 4"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 5"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 6"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
+              <Checkbox
+                label="Option 7"
+                onSelect={(value) => handleSelectRadio("music", value)}
+                selectedOption={radioValues.music}
+              />
             </div>
           </div>
           <div className="flex gap-x-[20px]">
@@ -102,8 +152,16 @@ export function LevelThree() {
                 Your Preference
               </span>
               <div className="flex h-full items-center gap-x-[97px] font-inconsolata">
-                <RadioButton label="Melon" />
-                <RadioButton label="Watermelon" />
+                <RadioButton
+                  label="Melon"
+                  onSelect={(value) => handleSelectRadio("preference", value)}
+                  selectedOption={radioValues.preference}
+                />
+                <RadioButton
+                  label="Watermelon"
+                  onSelect={(value) => handleSelectRadio("preference", value)}
+                  selectedOption={radioValues.preference}
+                />
               </div>
             </div>
           </div>
