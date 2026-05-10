@@ -72,14 +72,26 @@ export function LevelThree() {
             <TextField
               label="Email Address"
               placeholder="Enter your email address"
+              value={fieldValues.email}
+              validator={VALIDATION.email}
+              errorMessage="Please provide a valid email"
+              onSave={(value) => handleSetField("email", value)}
             />
             <TextField
               label="Phone number"
               placeholder="Enter your phone number"
+              value={fieldValues.phone}
+              validator={VALIDATION.phone}
+              errorMessage="Please provide a valid phone number"
+              onSave={(value) => handleSetField("phone", value)}
             />
             <TextField
               label="Date of Birth"
-              placeholder="Enter your birth date"
+              placeholder="DD/MM/YYYY"
+              value={fieldValues.birthday}
+              validator={VALIDATION.birthday}
+              errorMessage="Please provide a valid date"
+              onSave={(value) => handleSetField("birthday", value)}
             />
           </div>
           <div className="flex gap-x-[20px]">
