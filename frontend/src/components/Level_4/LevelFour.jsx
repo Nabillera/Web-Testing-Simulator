@@ -7,16 +7,29 @@ import { AccountInfoSection } from "./AccountInfoSection";
 import { DisplaySection } from "./DisplaySection";
 import { Button } from "../Button";
 
+const INITIAL_TOGGLES = {
+  general: false,
+  push: false,
+  sms: false,
+  email: false,
+};
+const INITIAL_THEME = "light";
+
 export function LevelFour() {
-  const [toggleOn, setToggleOn] = useState({
-    general: false,
-    push: false,
-    sms: false,
-    email: false,
-  });
-  const [selectedTheme, setSelectedTheme] = useState("light");
+  const [toggleOn, setToggleOn] = useState(INITIAL_TOGGLES);
+  const [selectedTheme, setSelectedTheme] = useState(INITIAL_THEME);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const handleToggle = (type, isActive) => {
+    if (type == "general" && isActive) {
+      return setToggleOn({
+        general: false,
+        push: true,
+        sms: true,
+        email: true,
+      });
+    }
+
     setToggleOn(() => {
       return {
         ...toggleOn,
@@ -27,6 +40,18 @@ export function LevelFour() {
 
   const handleSetTheme = (theme) => {
     setSelectedTheme(() => theme);
+  };
+
+  const handleRefresh = () => {
+    const delay = Math.random() * 9000 + 1;
+
+    setIsRefreshing(true);
+
+    setTimeout(() => {
+      setToggleOn(INITIAL_TOGGLES);
+      setSelectedTheme(INITIAL_THEME);
+      setIsRefreshing(false);
+    }, delay);
   };
 
   return (
@@ -42,8 +67,18 @@ export function LevelFour() {
       </h2>
       {selectedTheme == "surprise" ? (
         <div className="bg-[#FFFFFF] w-full h-full font-inconsolata flex flex-col items-center justify-center">
-          <span className="text-[20px] font-bold">500 Internal Server Error</span>
+          <span className="text-[20px] font-bold">
+            500 Internal Server Error
+          </span>
           <span>Something went wrong :(</span>
+        </div>
+      ) : isRefreshing ? (
+        <div className="w-full h-full flex flex-col items-center justify-center gap-y-[20px] bg-[#F2F2F2]">
+          <div className="w-[60px] h-[60px] border-[6px] border-[#D9D9D9] border-t-[#0A5598] rounded-full animate-spin"></div>
+
+          <span className="font-pixelify text-[32px]">
+            Refreshing settings...
+          </span>
         </div>
       ) : (
         <div className="flex flex-col items-start w-full gap-y-[10px]">
@@ -85,7 +120,10 @@ export function LevelFour() {
                 >
                   Save Changes
                 </Button>
-                <span className="font-inconsolata text-[#0A5598] text-[22px] font-bold hover:text-[#0A5598]/50 cursor-pointer">
+                <span
+                  onClick={handleRefresh}
+                  className="font-inconsolata text-[#0A5598] text-[22px] font-bold hover:text-[#0A5598]/50 cursor-pointer"
+                >
                   Refresh Page
                 </span>
               </div>
