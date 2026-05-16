@@ -94,14 +94,13 @@ export function ReportForm({ onClose }) {
             multiline={true}
           />
         </div>
-        <div className="flex justify-between">
+        <div className="flex gap-x-[30px]">
           <Dropdown
             value={formData.severity}
             onSelect={(value) => handleChange("severity", value)}
             options={["Critical", "Major", "Average", "Low"]}
             label="Severity"
             textSize="16px"
-            width="295px"
             placeholder="Set bug severity"
           />
           <Dropdown
@@ -110,7 +109,6 @@ export function ReportForm({ onClose }) {
             options={["GUI", "Functional"]}
             label="Type"
             textSize="16px"
-            width="295px"
             placeholder="Set bug type"
           />
         </div>

@@ -22,18 +22,18 @@ export function Dropdown({
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full h-full">
       <label
         style={{ fontSize: textSize }}
         className="font-bold text-[24px] font-inconsolata"
       >
         {label}
       </label>
-      <div className="relative">
+      <div className="relative w-full h-full">
         <div
           onClick={handleOpenDropdown}
           style={{ width: width }}
-          className={`${isOpen ? "rounded-t-[10px] border-b-0 border-[#0A5598]" : "rounded-[10px]"} flex justify-between w-full bg-[#FFFFFF] p-[7px] gap-x-[40px] h-[48px] border-2 cursor-pointer`}
+          className={`${isOpen ? "rounded-t-[10px] border-b-0 border-[#0A5598]" : "rounded-[10px]"} w-full h-full flex justify-between items-center bg-[#FFFFFF] p-[7px] gap-x-[40px] border-2 cursor-pointer`}
         >
           <span
             style={{ fontSize: textSize }}

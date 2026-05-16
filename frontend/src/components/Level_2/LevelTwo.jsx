@@ -48,24 +48,27 @@ export function LevelTwo() {
         Level 2: Red, pink, orange, blue
       </h2>
 
-      <div className="flex w-full justify-between">
+      <div className="flex w-full gap-x-[30px]">
         <input
           className="w-[60%] font-inconsolata border-2 rounded-[10px] text-[24px] p-[15px] bg-white outline-[#0A5598] placeholder:tracking-widest"
           placeholder="Search by name or HEX code..."
           onChange={handleSearch}
         />
 
-        <Dropdown
-          width="350px"
-          options={["Neon", "Pastel"]}
-          placeholder={selectedPalette}
-          onSelect={handleSelectPalette}
-        />
+        <div className="flex w-[40%]">
+          <Dropdown
+            options={["Neon", "Pastel"]}
+            placeholder={selectedPalette}
+            onSelect={handleSelectPalette}
+          />
+        </div>
       </div>
 
       <div className="flex justify-around w-full h-fit">
         {visibleColors.length === 0 ? (
-          <span className="font-inconsolata text-[20px] py-[40px]">No match found</span>
+          <span className="font-inconsolata text-[20px] py-[40px]">
+            No match found
+          </span>
         ) : (
           visibleColors.map((color) => (
             <ColorCard
