@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { useState } from "react";
 
-export function Sidebar({ onViewRequirements, onViewReport }) {
+export function Sidebar({ location, onViewRequirements, onViewReport }) {
+  const isLevelOpen = location.pathname.startsWith("/level-");
+  console.log(location.pathname, isLevelOpen);
   const handleRequirementsModal = () => {
     onViewRequirements();
   };
@@ -32,23 +34,25 @@ export function Sidebar({ onViewRequirements, onViewReport }) {
           <span>Leaderboard</span>
         </div>
       </div>
-      <div className="flex flex-col gap-y-[25px] pb-[20px]">
-        <Button
-          onClick={handleRequirementsModal}
-          backColor="#C1011A"
-          textSize="20px"
-        >
-          Requirements
-        </Button>
+      {isLevelOpen && (
+        <div className="flex flex-col gap-y-[25px] pb-[20px]">
+          <Button
+            onClick={handleRequirementsModal}
+            backColor="#C1011A"
+            textSize="20px"
+          >
+            Requirements
+          </Button>
 
-        <Button
-          onClick={handleReportForm}
-          backColor="#C1011A"
-          textSize="20px"
-        >
-          Open Report
-        </Button>
-      </div>
+          <Button
+            onClick={handleReportForm}
+            backColor="#C1011A"
+            textSize="20px"
+          >
+            Open Report
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

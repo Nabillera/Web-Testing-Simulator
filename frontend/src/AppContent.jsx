@@ -28,6 +28,7 @@ export function AppContent({
     <div className="flex h-full">
       {!hideSidebar && (
         <Sidebar
+          location={location}
           onViewRequirements={handleRequirementsModal}
           onViewReport={handleReportForm}
         />
