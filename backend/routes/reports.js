@@ -1,26 +1,33 @@
 import express from "express";
-import { db } from "../firebase.js";
+import { db } from "../config/firebase.js";
+import { evaluateBugReport } from "../services/nlpService.js";
 
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
     const report = req.body;
-    if (!report.title || !report.level) {
-      return res.status(400).json({ error: "Missing title/level" });
-    }
-    const docRef = await db.collection("reports").add({
-      ...report,
-      userId: report.userId || null,
+    const reportRef = await db
+      .collection("reports")
+      .add({ ...report, createdAt: new Date() });
+    const evaluation = await evaluateBugReport(report);
+    await db.collection("evaluations").add({
+      reportId: reportRef.id,
+      sessionId: report.sessionId,
+      level: report.level,
+      ...evaluation,
       createdAt: new Date(),
     });
+
     res.status(201).json({
-      message: "Report saved successfully",
-      id: docRef.id,
+      success: true,
+      message: "Bug report submitted successfully",
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
-      error: error.message,
+      success: false,
+      message: "Failed to submit bug report",
     });
   }
 });
