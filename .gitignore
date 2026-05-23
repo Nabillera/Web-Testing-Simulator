@@ -25,3 +25,8 @@ dist-ssr
 
 # Firebase key
 backend/config/firebaseKey.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
