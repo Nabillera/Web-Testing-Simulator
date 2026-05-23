@@ -12,6 +12,7 @@ import { RequirementsModal } from "./components/RequirementsModal";
 import { ReportForm } from "./components/ReportForm";
 import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/WarningModal";
+import { useState, useEffect } from "react";
 
 export function AppContent({
   requirementsOpen,
@@ -19,10 +20,15 @@ export function AppContent({
   reportOpen,
   handleReportForm,
 }) {
+  const [sessionId, setSessionId] = useState("");
   const location = useLocation();
   const levelId = location.pathname.split("-")[1];
   const hideSidebar =
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
+
+  useEffect(() => {
+    setSessionId(crypto.randomUUID());
+  }, [location.pathname]);
 
   return (
     <div className="flex h-full">
@@ -55,7 +61,14 @@ export function AppContent({
         )}
 
       {reportOpen &&
-        createPortal(<ReportForm onClose={handleReportForm} />, document.body)}
+        createPortal(
+          <ReportForm
+            onClose={handleReportForm}
+            level={levelId}
+            sessionId={sessionId}
+          />,
+          document.body,
+        )}
     </div>
   );
 }

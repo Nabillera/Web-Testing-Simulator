@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Dropdown } from "./Dropdown";
 import { TextInputField } from "./TextInputField";
 
-export function ReportForm({ onClose }) {
+export function ReportForm({ onClose, level, sessionId }) {
   const [formData, setFormData] = useState({
     title: "",
     stepsToReproduce: "",
@@ -11,7 +11,8 @@ export function ReportForm({ onClose }) {
     expectedResult: "",
     severity: "",
     type: "",
-    level: "0",
+    level: level,
+    sessionId: sessionId,
   });
 
   const handleChange = (field, value) => {
