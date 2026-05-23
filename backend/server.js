@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import reportRoutes from "./routes/reports.js";
-import EvaluationsRoutes from "./routes/evaluations.js";
+import evaluationRoutes from "./routes/evaluations.js";
 
 dotenv.config();
 
