@@ -1,5 +1,5 @@
 import spacy
-from bug_db import KNOWN_BUGS
+from app.bug_db import BUGS_BY_LEVELS
 
 nlp = spacy.load("en_core_web_md")
 
@@ -29,10 +29,15 @@ def generate_feedback(section, similarity):
 
 def evaluate_report(report):
 	level = report["level"]
-	bugs = KNOWN_BUGS.get(level, [])
+	bugs = BUGS_BY_LEVELS.get(level, [])
 	best_bug_match = None
 	best_bug_score = 0
-	best_section_scores = {}
+	best_section_scores = {
+        "title": 0,
+        "stepsToReproduce": 0,
+        "expectedResult": 0,
+        "actualResult": 0
+    }
 
 	for bug in bugs:
 		title_similarity = calculate_similarity(report["title"], bug["title_examples"])
@@ -70,30 +75,31 @@ def evaluate_report(report):
 	if len(report["title"]) < 15:
 		rule_score -= 10
 		feedback.append("Bug title is not detailed enough")
-	if len(report["steps"]) < 30:
+	if len(report["stepsToReproduce"]) < 30:
+		rule_score -= 10
 		feedback.append("Reproduction steps are too short")
   
 	bug_severity_match = False
 	bug_type_match = False
 	if best_bug_match:
-		bug_severity_match = report["severity"] == best_bug_match["severity"]
-		bug_type_match = report["type"] == best_bug_match["type"]
+		bug_severity_match = report["severity"] == best_bug_match["valid_severity"]
+		bug_type_match = report["type"] == best_bug_match["valid_type"]
   
 		if bug_severity_match:
 			feedback.append("Bug severity is correct!")
 		else:
 			rule_score -= 10
-			feedback.append(f"Expected bug severity: {best_bug_match["severity"]}")
+			feedback.append(f"Expected bug severity: {best_bug_match["valid_severity"]}")
 		
 		if bug_type_match:
 			feedback.append("Bug type is correct!")
 		else:
 			rule_score -= 10
-			feedback.append(f"Expected bug type: {best_bug_match["type"]}")
+			feedback.append(f"Expected bug type: {best_bug_match["valid_type"]}")
   
 	feedback.append(generate_feedback("Title", best_section_scores["title"]))
 	feedback.append(generate_feedback("Reproduction Steps", best_section_scores["stepsToReproduce"]))
-	feedback.append(generate_feedback("Expected Result", best_section_scores["ExpectedResult"]))
+	feedback.append(generate_feedback("Expected Result", best_section_scores["expectedResult"]))
 	feedback.append(generate_feedback("Actual Result", best_section_scores["actualResult"]))
  
 	nlp_score = best_bug_score * 100
