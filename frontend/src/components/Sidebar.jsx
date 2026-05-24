@@ -7,9 +7,7 @@ export function Sidebar({
   location,
   onViewRequirements,
   onViewReport,
-  sessionId,
-  elapsedTime,
-  levelId,
+  onCompleteLevel
 }) {
   const isLevelOpen = location.pathname.startsWith("/level-");
 
@@ -19,26 +17,6 @@ export function Sidebar({
 
   const handleReportForm = () => {
     onViewReport();
-  };
-
-  const handleCompleteLevel = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/evaluations/finish/${sessionId}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            completionTime: elapsedTime,
-            level: levelId,
-          }),
-        },
-      );
-      const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -78,11 +56,7 @@ export function Sidebar({
           >
             Open Report
           </Button>
-          <Button
-            onClick={handleCompleteLevel}
-            backColor="#0A5598"
-            textSize="20px"
-          >
+          <Button onClick={onCompleteLevel} backColor="#0A5598" textSize="20px">
             Complete Level
           </Button>
         </div>

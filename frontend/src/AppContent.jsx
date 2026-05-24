@@ -51,6 +51,26 @@ export function AppContent({}) {
     setReportOpen(() => !reportOpen);
   };
 
+  const handleCompleteLevel = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/evaluations/finish/${sessionId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            completionTime: sessionTracking.elapsedTime,
+            level: levelId,
+          }),
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setSessionId(crypto.randomUUID());
     setSessionTracking({
@@ -83,9 +103,7 @@ export function AppContent({}) {
           location={location}
           onViewRequirements={handleRequirementsModal}
           onViewReport={handleReportForm}
-          sessionId={sessionId}
-          levelId={levelId}
-          elapsedTime={sessionTracking.elapsedTime}
+          onCompleteLevel={handleCompleteLevel}
         />
       )}
       <Routes>
