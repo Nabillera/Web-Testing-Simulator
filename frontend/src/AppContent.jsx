@@ -13,6 +13,7 @@ import { ReportForm } from "./components/ReportForm";
 import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/WarningModal";
 import { useState, useEffect } from "react";
+import { CompletionModal } from "./components/Level_Completion/CompletionModal";
 
 export function AppContent({}) {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
@@ -22,6 +23,10 @@ export function AppContent({}) {
     sessionStarted: false,
     startTime: null,
     elapsedTime: 0,
+  });
+  const [completionStatus, setCompletionStatus] = useState({
+    completionOpen: false,
+    completionSummary: null,
   });
 
   const location = useLocation();
@@ -51,6 +56,10 @@ export function AppContent({}) {
     setReportOpen(() => !reportOpen);
   };
 
+  const handleCompletionModal = () => {
+    setCompletionStatus({ completionOpen: false, completionSummary: null });
+  };
+
   const handleCompleteLevel = async () => {
     try {
       const response = await fetch(
@@ -60,12 +69,13 @@ export function AppContent({}) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             completionTime: sessionTracking.elapsedTime,
-            level: levelId,
+            level: Number(levelId),
           }),
         },
       );
       const result = await response.json();
       console.log(result);
+      setCompletionStatus({ completionOpen: true, completionSummary: result });
     } catch (error) {
       console.log(error);
     }
@@ -133,6 +143,14 @@ export function AppContent({}) {
             onClose={handleReportForm}
             level={levelId}
             sessionId={sessionId}
+          />,
+          document.body,
+        )}
+      {completionStatus.completionOpen &&
+        createPortal(
+          <CompletionModal
+            completionSummary={completionStatus.completionSummary}
+            onClose={handleCompletionModal}
           />,
           document.body,
         )}

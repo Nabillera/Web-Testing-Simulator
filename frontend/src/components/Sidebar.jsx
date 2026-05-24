@@ -7,7 +7,7 @@ export function Sidebar({
   location,
   onViewRequirements,
   onViewReport,
-  onCompleteLevel
+  onCompleteLevel,
 }) {
   const isLevelOpen = location.pathname.startsWith("/level-");
 
@@ -17,6 +17,10 @@ export function Sidebar({
 
   const handleReportForm = () => {
     onViewReport();
+  };
+
+  const handleCompleteLevel = () => {
+    onCompleteLevel();
   };
 
   return (
@@ -56,7 +60,11 @@ export function Sidebar({
           >
             Open Report
           </Button>
-          <Button onClick={onCompleteLevel} backColor="#0A5598" textSize="20px">
+          <Button
+            onClick={handleCompleteLevel}
+            backColor="#0A5598"
+            textSize="20px"
+          >
             Complete Level
           </Button>
         </div>
