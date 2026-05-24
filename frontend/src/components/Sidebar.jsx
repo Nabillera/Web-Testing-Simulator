@@ -3,15 +3,42 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { useState } from "react";
 
-export function Sidebar({ location, onViewRequirements, onViewReport }) {
+export function Sidebar({
+  location,
+  onViewRequirements,
+  onViewReport,
+  sessionId,
+  elapsedTime,
+  levelId,
+}) {
   const isLevelOpen = location.pathname.startsWith("/level-");
-  console.log(location.pathname, isLevelOpen);
+
   const handleRequirementsModal = () => {
     onViewRequirements();
   };
 
   const handleReportForm = () => {
     onViewReport();
+  };
+
+  const handleCompleteLevel = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/evaluations/finish/${sessionId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            completionTime: elapsedTime,
+            level: levelId,
+          }),
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -50,6 +77,13 @@ export function Sidebar({ location, onViewRequirements, onViewReport }) {
             textSize="20px"
           >
             Open Report
+          </Button>
+          <Button
+            onClick={handleCompleteLevel}
+            backColor="#0A5598"
+            textSize="20px"
+          >
+            Complete Level
           </Button>
         </div>
       )}

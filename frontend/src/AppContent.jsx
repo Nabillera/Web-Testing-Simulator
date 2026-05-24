@@ -18,6 +18,11 @@ export function AppContent({}) {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [sessionId, setSessionId] = useState("");
+  const [sessionTracking, setSessionTracking] = useState({
+    sessionStarted: false,
+    startTime: null,
+    elapsedTime: 0,
+  });
 
   const location = useLocation();
   const levelId = location.pathname.split("-")[1];
@@ -25,7 +30,21 @@ export function AppContent({}) {
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
 
   const handleRequirementsModal = () => {
-    setRequirementsOpen(() => !requirementsOpen);
+    setRequirementsOpen((prev) => {
+      const nextState = !prev;
+      if (
+        prev == true &&
+        nextState == false &&
+        !sessionTracking.sessionStarted
+      ) {
+        setSessionTracking((prevSession) => ({
+          ...prevSession,
+          startTime: Date.now(),
+          sessionStarted: true,
+        }));
+      }
+      return nextState;
+    });
   };
 
   const handleReportForm = () => {
@@ -34,7 +53,28 @@ export function AppContent({}) {
 
   useEffect(() => {
     setSessionId(crypto.randomUUID());
+    setSessionTracking({
+      sessionStarted: false,
+      startTime: null,
+      elapsedTime: 0,
+    });
+    if (location.pathname.startsWith("/level-")) {
+      setRequirementsOpen(true);
+    }
   }, [location.pathname]);
+
+  useEffect(() => {
+    let interval;
+    if (sessionTracking.sessionStarted && sessionTracking.startTime) {
+      interval = setInterval(() => {
+        setSessionTracking((prev) => ({
+          ...prev,
+          elapsedTime: Math.floor(Date.now() - prev.startTime) / 1000,
+        }));
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [sessionTracking.sessionStarted, sessionTracking.startTime]);
 
   return (
     <div className="flex h-full">
@@ -43,6 +83,9 @@ export function AppContent({}) {
           location={location}
           onViewRequirements={handleRequirementsModal}
           onViewReport={handleReportForm}
+          sessionId={sessionId}
+          levelId={levelId}
+          elapsedTime={sessionTracking.elapsedTime}
         />
       )}
       <Routes>

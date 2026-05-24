@@ -3,9 +3,11 @@ import { db } from "../config/firebase.js";
 
 const router = express.Router();
 
-router.get("/finish/:sessionId", async (req, res) => {
+router.post("/finish/:sessionId", async (req, res) => {
   try {
     const { sessionId } = req.params;
+    const { completionTime, level } = req.body;
+
     const snapshot = await db
       .collection("evaluations")
       .where("sessionId", "==", sessionId)
@@ -16,16 +18,22 @@ router.get("/finish/:sessionId", async (req, res) => {
     }));
     const totalReports = evaluations.length;
 
-    res.json({
-      success: true,
+    const sessionData = {
+      sessionId,
+      level,
+      completionTime,
       totalReports,
-      evaluations,
-    });
+      createdAt: new Date(),
+    };
+
+    await db.collection("sessions").add(sessionData);
+
+    res.json({ success: true, ...sessionData, evaluations });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       success: false,
-      message: "Failed to fetch report evaluations",
+      message: "Failed to complete level",
     });
   }
 });
