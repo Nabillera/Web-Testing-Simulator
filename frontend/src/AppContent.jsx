@@ -14,17 +14,23 @@ import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/WarningModal";
 import { useState, useEffect } from "react";
 
-export function AppContent({
-  requirementsOpen,
-  handleRequirementsModal,
-  reportOpen,
-  handleReportForm,
-}) {
+export function AppContent({}) {
+  const [requirementsOpen, setRequirementsOpen] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
   const [sessionId, setSessionId] = useState("");
+
   const location = useLocation();
   const levelId = location.pathname.split("-")[1];
   const hideSidebar =
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
+
+  const handleRequirementsModal = () => {
+    setRequirementsOpen(() => !requirementsOpen);
+  };
+
+  const handleReportForm = () => {
+    setReportOpen(() => !reportOpen);
+  };
 
   useEffect(() => {
     setSessionId(crypto.randomUUID());
