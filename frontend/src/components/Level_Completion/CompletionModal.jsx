@@ -58,6 +58,7 @@ export function CompletionModal({ completionSummary, onClose }) {
                 title={report.matchedBugTitle}
                 overallScore={report.overallScore}
                 feedback={report.feedback}
+                submittedReport={report.report}
               />
             );
           })}

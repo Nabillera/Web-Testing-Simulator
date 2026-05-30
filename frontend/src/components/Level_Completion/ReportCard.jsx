@@ -1,7 +1,14 @@
 import { useState } from "react";
 import Arrow from "../../assets/arrow.svg";
 
-export function ReportCard({ bugIcon, idx, title, overallScore, feedback }) {
+export function ReportCard({
+  bugIcon,
+  idx,
+  title,
+  overallScore,
+  feedback,
+  submittedReport,
+}) {
   const [openDropdowns, setOpenDropdowns] = useState({
     reportData: false,
     feedback: false,
@@ -40,27 +47,27 @@ export function ReportCard({ bugIcon, idx, title, overallScore, feedback }) {
         >
           <div>
             <span className="font-bold">Title: </span>
-            <span>placeholder</span>
+            <span>{submittedReport?.title}</span>
           </div>
           <div>
             <span className="font-bold">Reproduction Steps: </span>
-            <span>palceholder</span>
+            <span>{submittedReport?.stepsToReproduce}</span>
           </div>
           <div>
             <span className="font-bold">Actual Result: </span>
-            <span>placeholder</span>
+            <span>{submittedReport?.actualResult}</span>
           </div>
           <div>
             <span className="font-bold">Expected Result: </span>
-            <span>placeholder</span>
+            <span>{submittedReport?.expectedResult}</span>
           </div>
           <div>
             <span className="font-bold">Severity: </span>
-            <span>placeholder</span>
+            <span>{submittedReport?.severity}</span>
           </div>
           <div>
             <span className="font-bold">Type: </span>
-            <span>placeholder</span>
+            <span>{submittedReport?.type}</span>
           </div>
         </div>
       </div>

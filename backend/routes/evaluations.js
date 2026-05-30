@@ -12,10 +12,24 @@ router.post("/finish/:sessionId", async (req, res) => {
       .collection("evaluations")
       .where("sessionId", "==", sessionId)
       .get();
-    const evaluations = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const evaluations = await Promise.all(
+      snapshot.docs.map(async (doc) => {
+        const evaluation = {
+          id: doc.id,
+          ...doc.data(),
+        };
+
+        const reportDoc = await db
+          .collection("reports")
+          .doc(evaluation.reportId)
+          .get();
+
+        return {
+          ...evaluation,
+          report: reportDoc.exists ? reportDoc.data() : null,
+        };
+      }),
+    );
 
     const totalReports = evaluations.length;
     const averageScore =
@@ -23,7 +37,7 @@ router.post("/finish/:sessionId", async (req, res) => {
         ? evaluations.reduce((sum, report) => sum + report.overallScore, 0) /
           totalReports
         : 0;
-    
+
     const sessionData = {
       sessionId,
       level,
