@@ -75,6 +75,10 @@ export function AppContent({}) {
       );
       const result = await response.json();
       console.log(result);
+      setSessionTracking((prev) => ({
+        ...prev,
+        sessionStarted: false,
+      }));
       setCompletionStatus({ completionOpen: true, completionSummary: result });
     } catch (error) {
       console.log(error);
