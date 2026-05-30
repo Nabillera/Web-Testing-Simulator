@@ -2,6 +2,8 @@ import Ant from "../../assets/black-outline-bugs/ant-black.png";
 import { Button } from "../Button";
 import { Link } from "react-router-dom";
 import { ReportCard } from "./ReportCard";
+import { BUG_ICONS } from "../../../DATA/Completion_modal_icons";
+
 export function CompletionModal({ completionSummary, onClose }) {
   const formatCompletionTime = (completionTime) => {
     const roundedSeconds = Math.floor(completionTime);
@@ -16,7 +18,7 @@ export function CompletionModal({ completionSummary, onClose }) {
 
   return (
     <div className="absolute z-11 flex justify-center items-center w-full h-full backdrop-blur-sm transition-all duration-[1500ms] ease-out">
-      <div className="flex flex-col justify-between items-center font-inconsolata bg-[#D9D9D9] w-[80%] h-[80%] rounded-[20px] border-2 p-[20px]">
+      <div className="flex flex-col justify-between items-center font-inconsolata bg-[#D9D9D9] w-[90%] h-[90%] rounded-[20px] border-2 p-[20px]">
         <div className="flex items-center gap-x-[30px]">
           <img
             src={Ant}
@@ -47,10 +49,11 @@ export function CompletionModal({ completionSummary, onClose }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-x-[10px] h-full">
+        <div className="grid grid-cols-2 gap-[25px] w-full flex-1 overflow-y-auto p-[20px]">
           {completionSummary.evaluations.map((report, idx) => {
             return (
               <ReportCard
+                bugIcon={report.icon}
                 idx={idx + 1}
                 title={report.matchedBugTitle}
                 overallScore={report.overallScore}

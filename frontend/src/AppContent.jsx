@@ -14,6 +14,7 @@ import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/WarningModal";
 import { useState, useEffect } from "react";
 import { CompletionModal } from "./components/Level_Completion/CompletionModal";
+import { BUG_ICONS } from "../DATA/Completion_modal_icons";
 
 export function AppContent({}) {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
@@ -79,7 +80,15 @@ export function AppContent({}) {
         ...prev,
         sessionStarted: false,
       }));
-      setCompletionStatus({ completionOpen: true, completionSummary: result });
+
+      const reportIcons = result.evaluations.map((report) => ({
+        ...report,
+        icon: BUG_ICONS[Math.floor(Math.random() * BUG_ICONS.length)],
+      }));
+      setCompletionStatus({
+        completionOpen: true,
+        completionSummary: { ...result, evaluations: reportIcons },
+      });
     } catch (error) {
       console.log(error);
     }
