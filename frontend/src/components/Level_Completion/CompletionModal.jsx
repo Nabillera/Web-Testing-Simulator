@@ -14,16 +14,6 @@ export function CompletionModal({ completionSummary, onClose }) {
     }
   };
 
-  const averageScore =
-    completionSummary.totalReports > 0
-      ? Math.round(
-          completionSummary.evaluations.reduce(
-            (sum, report) => sum + report.overallScore,
-            0,
-          ) / completionSummary.totalReports,
-        )
-      : 0;
-
   return (
     <div className="absolute z-11 flex justify-center items-center w-full h-full backdrop-blur-sm transition-all duration-[1500ms] ease-out">
       <div className="flex flex-col justify-between items-center font-inconsolata bg-[#D9D9D9] w-[80%] h-[80%] rounded-[20px] border-2 p-[20px]">
@@ -41,7 +31,7 @@ export function CompletionModal({ completionSummary, onClose }) {
           />
         </div>
         <div className="flex gap-x-[15px]">
-          <div className="bg-[#F2f2f2] font-bold text-[20px] text-[#0A5598] border-2 border-[#0A5598] rounded-[5px] px-[10px] p-[5px]">
+          <div className="bg-[#F2f2f2] font-bold text-[20px] text-[#F3AE39] border-2 border-[#F3AE39] rounded-[5px] px-[10px] p-[5px]">
             <span>Completion Time: </span>
             <span>
               {formatCompletionTime(completionSummary.completionTime)}
@@ -53,7 +43,7 @@ export function CompletionModal({ completionSummary, onClose }) {
           </div>
           <div className="bg-[#F2f2f2] font-bold text-[20px] text-[#C1011A] border-2 border-[#C1011A] rounded-[5px] px-[10px] p-[5px]">
             <span>Average Score: </span>
-            <span>{averageScore}</span>
+            <span>{completionSummary.averageScore}</span>
           </div>
         </div>
 

@@ -16,13 +16,20 @@ router.post("/finish/:sessionId", async (req, res) => {
       id: doc.id,
       ...doc.data(),
     }));
-    const totalReports = evaluations.length;
 
+    const totalReports = evaluations.length;
+    const averageScore =
+      totalReports > 0
+        ? evaluations.reduce((sum, report) => sum + report.overallScore, 0) /
+          totalReports
+        : 0;
+    
     const sessionData = {
       sessionId,
       level,
       completionTime,
       totalReports,
+      averageScore: Number(averageScore.toFixed(1)),
       createdAt: new Date(),
     };
 
