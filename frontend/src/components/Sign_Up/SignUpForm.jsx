@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebaseAuth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../config/firebaseAuth";
 
 export function SignUpForm({ onAnonymousLogin }) {
   const [userCredentials, setUserCredentials] = useState({
@@ -37,7 +39,12 @@ export function SignUpForm({ onAnonymousLogin }) {
         userCredentials.email,
         userCredentials.password,
       );
-      console.log("User created: ", userCredential.user.id);
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        username: userCredentials.username,
+        email: userCredentials.email,
+        createdAt: new Date(),
+      });
+      console.log("User created: ", userCredential.user.uid);
       navigate("/");
     } catch (error) {
       console.log(error);

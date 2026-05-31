@@ -22,6 +22,7 @@ import { useState, useEffect } from "react";
 import { CompletionModal } from "./components/Level_Completion/CompletionModal";
 import { BUG_ICONS } from "../DATA/Completion_modal_icons";
 import { LoadingModal } from "./components/Modals/LoadingModal";
+import { useAuth } from "./context/AuthContext";
 
 export function AppContent() {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
@@ -48,6 +49,7 @@ export function AppContent() {
   const hideSidebar =
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
   const navigate = useNavigate();
+  const { currentUser } = useAuth;
 
   const handleNavigation = (destination) => {
     if (
@@ -107,6 +109,8 @@ export function AppContent() {
           body: JSON.stringify({
             completionTime: sessionTracking.elapsedTime,
             level: Number(levelId),
+            userId: currentUser?.uid || null,
+            isAnonymous: currentUser?.isAnonymous || false,
           }),
         },
       );

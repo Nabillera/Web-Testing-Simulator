@@ -57,8 +57,13 @@ export function SignInForm({ onAnonymousLogin }) {
           outlineColor="#F3AE39"
         />
       </div>
+      {error && (
+        <span className="self-start font-inconsolata font-bold text-[18px] text-[#C1011A]">
+          {error}
+        </span>
+      )}
       <div className="flex flex-col items-center gap-y-[15px] mt-[20px]">
-        <Button backColor="#F3AE39" width="275px">
+        <Button onClick={handleSignIn} backColor="#F3AE39" width="275px">
           Sign In
         </Button>
         <button

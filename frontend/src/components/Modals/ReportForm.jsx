@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { TextInputField } from "../TextInputField";
+import { useAuth } from "../../context/AuthContext";
 
 export function ReportForm({
   onClose,
@@ -10,6 +11,7 @@ export function ReportForm({
   onStartLoading,
   onStopLoading,
 }) {
+  const { currentUser } = useAuth();
   const [formData, setFormData] = useState({
     title: "",
     stepsToReproduce: "",
@@ -19,6 +21,8 @@ export function ReportForm({
     type: "",
     level: level,
     sessionId: sessionId,
+    userId: currentUser?.uid || null,
+    isAnonymous: currentUser?.isAnonymous || null,
   });
 
   const handleChange = (field, value) => {
