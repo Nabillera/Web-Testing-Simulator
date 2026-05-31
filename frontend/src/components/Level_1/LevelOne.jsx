@@ -19,7 +19,6 @@ export function LevelOne() {
   ).toFixed(2);
 
   const handleShowModal = () => {
-    if (totalPrice == 0) return;
     setShowPurchaseModal((prevStatus) => !prevStatus);
   };
 
@@ -120,7 +119,12 @@ export function LevelOne() {
           </Button>
         </div>
       </div>
-      {showPurchaseModal && <PurchaseModal onHandleModal={handleShowModal} />}
+      {showPurchaseModal && (
+        <PurchaseModal
+          onHandleModal={handleShowModal}
+          totalPrice={totalPrice}
+        />
+      )}
     </div>
   );
 }
