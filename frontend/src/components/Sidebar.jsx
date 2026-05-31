@@ -8,6 +8,7 @@ export function Sidebar({
   onViewRequirements,
   onViewReport,
   onCompleteLevel,
+  onNavigation
 }) {
   const isLevelOpen = location.pathname.startsWith("/level-");
 
@@ -26,12 +27,13 @@ export function Sidebar({
   return (
     <div className="flex flex-col justify-between h-full border-t-[#C1011A] border-t text-white bg-black w-fit text-[22px] pt-[20px] pl-[15px] pr-[20px] font-pixelify z-3">
       <div className="flex flex-col gap-y-[25px]">
-        <Link to="/">
-          <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[30px] hover:bg-[#272727] rounded-[4px]">
-            <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
-            <span>Home</span>
-          </div>
-        </Link>
+        <div
+          onClick={() => onNavigation("/")}
+          className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[30px] hover:bg-[#272727] rounded-[4px]"
+        >
+          <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+          <span>Home</span>
+        </div>
         <Link to="/sign-up">
           <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] hover:bg-[#272727] rounded-[4px]">
             <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />

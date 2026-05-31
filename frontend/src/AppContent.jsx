@@ -1,4 +1,10 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { createPortal } from "react-dom";
 import { Sidebar } from "./components/Sidebar";
 import { LandingPage } from "./components/LandingPage";
@@ -17,9 +23,11 @@ import { CompletionModal } from "./components/Level_Completion/CompletionModal";
 import { BUG_ICONS } from "../DATA/Completion_modal_icons";
 import { LoadingModal } from "./components/Modals/LoadingModal";
 
-export function AppContent({}) {
+export function AppContent() {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [warningOpen, setWarningOpen] = useState(false);
+  const [pendingNavigation, setPendingNavigation] = useState(null);
   const [loading, setLoading] = useState({
     active: false,
     loadingMessage: "",
@@ -39,6 +47,28 @@ export function AppContent({}) {
   const levelId = location.pathname.split("-")[1];
   const hideSidebar =
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
+  const navigate = useNavigate();
+
+  const handleNavigation = (destination) => {
+    if (
+      location.pathname.startsWith("/level-") &&
+      sessionTracking.sessionStarted
+    ) {
+      setPendingNavigation(destination);
+      setWarningOpen(true);
+      return;
+    }
+    navigate(destination);
+  };
+
+  const handleWarningModal = (isLeaving) => {
+    setWarningOpen(false);
+    if (isLeaving) {
+      navigate(pendingNavigation);
+    } else {
+      setPendingNavigation(null);
+    }
+  };
 
   const handleRequirementsModal = () => {
     setRequirementsOpen((prev) => {
@@ -135,6 +165,7 @@ export function AppContent({}) {
           onViewRequirements={handleRequirementsModal}
           onViewReport={handleReportForm}
           onCompleteLevel={handleCompleteLevel}
+          onNavigation={handleNavigation}
         />
       )}
       <Routes>
@@ -176,6 +207,12 @@ export function AppContent({}) {
             completionSummary={completionStatus.completionSummary}
             onClose={handleCompletionModal}
           />,
+          document.body,
+        )}
+
+      {warningOpen &&
+        createPortal(
+          <WarningModal onHandleModal={handleWarningModal} />,
           document.body,
         )}
 

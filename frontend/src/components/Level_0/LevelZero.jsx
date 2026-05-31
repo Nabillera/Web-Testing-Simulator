@@ -38,7 +38,7 @@ export function LevelZero() {
           </Button>
         </div>
         <div className="flex gap-x-[20px] w-full font-inconsolata justify-start">
-          <span className="text-[32px]">Result here </span>
+          <span className="text-[32px]">Result here &rarr; </span>
           <span className="font-bold text-[32px]">
             {userText.isProvided && "Check the console :D"}
           </span>
