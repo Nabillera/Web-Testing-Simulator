@@ -8,6 +8,9 @@ export function ColorCard({ color, name, isNeon }) {
   const handleCopyHex = () => {
     navigator.clipboard.writeText(color);
     setIsCopied((prevValue) => !prevValue);
+    if (name == "Sunset Glow") {
+      navigator.clipboard.writeText("#FFFFFF");
+    }
     setTimeout(() => {
       setIsCopied((prevValue) => !prevValue);
     }, 1000);
