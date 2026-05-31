@@ -17,7 +17,6 @@ export function LevelTwo() {
 
   const handleSelectPalette = (palette) => {
     setSelectedPalette(palette);
-    setStartIndex(0);
   };
 
   const handleIncreaseIndex = () => {
@@ -34,7 +33,7 @@ export function LevelTwo() {
     selectedPalette === "Neon" ? ELECTRIC_COLORS : PASTEL_COLORS;
 
   const filteredColors = currentPalette.filter((color) => {
-    return color.name.includes(searchQuery) || color.hex.includes(searchQuery);
+    return color.name.includes(searchQuery);
   });
 
   const visibleColors = filteredColors.slice(startIndex, startIndex + 5);
