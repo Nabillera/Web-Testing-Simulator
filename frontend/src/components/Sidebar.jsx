@@ -11,8 +11,7 @@ export function Sidebar({
   onCompleteLevel,
   onNavigation,
 }) {
-  // TEMPORARY LINE
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const isLevelOpen = location.pathname.startsWith("/level-");
 
@@ -38,20 +37,44 @@ export function Sidebar({
           <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
           <span>Home</span>
         </div>
-        <Link to="/sign-up">
-          <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] hover:bg-[#272727] rounded-[4px]">
-            <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
-            <span>Profile</span>
-          </div>
-        </Link>
         <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
           <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
           <span>Leaderboard</span>
         </div>
-        <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
-          <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
-          <span>{currentUser?.email}</span>
-        </div>
+        {currentUser ? (
+          <>
+            <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
+              <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+              <span>
+                {currentUser.isAnonymous ? "Guest" : currentUser.email}
+              </span>
+            </div>
+            <div
+              onClick={logout}
+              className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]"
+            >
+              <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+              <span>Logout</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              onClick={() => onNavigation("/sign-in")}
+              className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]"
+            >
+              <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+              <span>Sign In</span>
+            </div>
+            <div
+              onClick={() => onNavigation("/sign-up")}
+              className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]"
+            >
+              <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+              <span>Sign Up</span>
+            </div>
+          </>
+        )}
       </div>
       {isLevelOpen && (
         <div className="flex flex-col gap-y-[25px] pb-[20px]">
