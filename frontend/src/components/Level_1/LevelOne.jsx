@@ -8,9 +8,8 @@ import { PurchaseModal } from "./PurchaseModal";
 
 export function LevelOne() {
   const [selectedProducts, setSelectedProducts] = useState([
-    { name: "Beetle", quantity: 0, totalPrice: 0 },
-    { name: "Moth", quantity: 0, totalPrice: 0 },
-    { name: "Ant", quantity: 0, totalPrice: 0 },
+    { name: "Beetle", quantity: 0, totalPrice: 0, addedToBasket: false },
+    { name: "Moth", quantity: 0, totalPrice: 0, addedToBasket: false },
   ]);
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
@@ -28,13 +27,14 @@ export function LevelOne() {
     setSelectedProducts((prevProducts) => {
       const updatedList = [...prevProducts];
       const index = updatedList.findIndex((prod) => prod.name == name);
-      if (updatedList[index].quantity > 0) {
+      if (updatedList[index].addedToBasket) {
         return prevProducts;
       }
       updatedList[index] = {
         ...updatedList[index],
         quantity: 1,
         totalPrice: prodPrice,
+        addedToBasket: true,
       };
       return updatedList;
     });
@@ -64,7 +64,7 @@ export function LevelOne() {
     setSelectedProducts((prevProducts) => {
       const updatedList = [...prevProducts];
       const index = updatedList.findIndex((prod) => prod.name === name);
-      if (updatedList[index].quantity <= 0) return prevProducts;
+      // if (updatedList[index].quantity <= 0) return prevProducts;
       const newQuantity = updatedList[index].quantity - 1;
       updatedList[index] = {
         ...updatedList[index],
@@ -97,7 +97,7 @@ export function LevelOne() {
       <div className="flex justify-center gap-x-[40px] w-full">
         <div className="w-[30%]">
           {selectedProducts.map((product, idx) => {
-            if (product.quantity > 0)
+            if (product.addedToBasket)
               return (
                 <SelectedProduct
                   key={idx}

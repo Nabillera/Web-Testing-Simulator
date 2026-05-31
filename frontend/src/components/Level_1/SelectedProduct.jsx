@@ -30,7 +30,11 @@ export function SelectedProduct({
       </div>
       <div className="flex gap-x-[20px] text-[20px]">
         <span>{`x${quantity}`}</span>
-        <span>{`$${totalPrice}`}</span>
+        <span>
+          {prodName == "Beetle"
+            ? `$${(totalPrice + 5).toFixed(2)}`
+            : `$${totalPrice}`}
+        </span>
       </div>
     </div>
   );

@@ -15,9 +15,12 @@ export function ProductCard({ prodImage, color, prodName, prodPrice, onAdd }) {
         </span>
         <span className="font-inconsolata text-[24px]">{`$${prodPrice}`}</span>
         <button
-          onClick={() => onAdd(prodName, prodPrice)}
+          onClick={() => {
+            if (prodName == "Ant") return;
+            onAdd(prodName, prodPrice);
+          }}
           style={{ backgroundColor: color }}
-          className="font-pixelify text-[24px] rounded-[10px] p-[10px] cursor-pointer"
+          className="font-pixelify text-[24px] rounded-[10px] p-[10px] cursor-pointer hover:opacity-80"
         >
           Add to Basket
         </button>
