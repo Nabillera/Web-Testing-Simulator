@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { Button } from "./Button";
-import { Dropdown } from "./Dropdown";
-import { TextInputField } from "./TextInputField";
+import { Button } from "../Button";
+import { Dropdown } from "../Dropdown";
+import { TextInputField } from "../TextInputField";
 
-export function ReportForm({ onClose, level, sessionId }) {
+export function ReportForm({
+  onClose,
+  level,
+  sessionId,
+  onStartLoading,
+  onStopLoading,
+}) {
   const [formData, setFormData] = useState({
     title: "",
     stepsToReproduce: "",
@@ -24,6 +30,7 @@ export function ReportForm({ onClose, level, sessionId }) {
 
   const handleSubmit = async () => {
     try {
+      onStartLoading("Submitting your bug report for evaluation...");
       const response = await fetch("http://localhost:5000/api/reports", {
         method: "POST",
         headers: {
@@ -33,10 +40,12 @@ export function ReportForm({ onClose, level, sessionId }) {
       });
       const data = await response.json();
       console.log("Report added to DB:", data);
-
+      onStopLoading();
       onClose();
     } catch (error) {
       console.log("Error occured:", error);
+    } finally {
+      onStopLoading();
     }
   };
 

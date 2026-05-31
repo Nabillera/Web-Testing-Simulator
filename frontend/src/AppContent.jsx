@@ -8,17 +8,22 @@ import { LevelOne } from "./components/Level_1/LevelOne";
 import { LevelTwo } from "./components/Level_2/LevelTwo";
 import { LevelThree } from "./components/Level_3/LevelThree";
 import { LevelFour } from "./components/Level_4/LevelFour";
-import { RequirementsModal } from "./components/RequirementsModal";
-import { ReportForm } from "./components/ReportForm";
+import { RequirementsModal } from "./components/Modals/RequirementsModal";
+import { ReportForm } from "./components/Modals/ReportForm";
 import { REQUIREMENTS } from "../DATA/Level_requirements";
-import { WarningModal } from "./components/WarningModal";
+import { WarningModal } from "./components/Modals/WarningModal";
 import { useState, useEffect } from "react";
 import { CompletionModal } from "./components/Level_Completion/CompletionModal";
 import { BUG_ICONS } from "../DATA/Completion_modal_icons";
+import { LoadingModal } from "./components/Modals/LoadingModal";
 
 export function AppContent({}) {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [loading, setLoading] = useState({
+    active: false,
+    loadingMessage: "",
+  });
   const [sessionId, setSessionId] = useState("");
   const [sessionTracking, setSessionTracking] = useState({
     sessionStarted: false,
@@ -62,6 +67,7 @@ export function AppContent({}) {
   };
 
   const handleCompleteLevel = async () => {
+    setLoading({ active: true, message: "Fetching your results..." });
     try {
       const response = await fetch(
         `http://localhost:5000/api/evaluations/finish/${sessionId}`,
@@ -91,6 +97,8 @@ export function AppContent({}) {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading({ active: false, message: "" });
     }
   };
 
@@ -156,15 +164,24 @@ export function AppContent({}) {
             onClose={handleReportForm}
             level={levelId}
             sessionId={sessionId}
+            onStartLoading={(message) => setLoading({ active: true, message })}
+            onStopLoading={() => setLoading({ active: false, message: "" })}
           />,
           document.body,
         )}
+
       {completionStatus.completionOpen &&
         createPortal(
           <CompletionModal
             completionSummary={completionStatus.completionSummary}
             onClose={handleCompletionModal}
           />,
+          document.body,
+        )}
+
+      {loading.active &&
+        createPortal(
+          <LoadingModal loadingMessage={loading.message} />,
           document.body,
         )}
     </div>
