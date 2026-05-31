@@ -10,7 +10,7 @@ export function LevelTwo() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (event) => {
-    const query = event.target.value.toLowerCase();
+    const query = event.target.value;
     setSearchQuery(query);
     setStartIndex(0);
   };
@@ -34,10 +34,7 @@ export function LevelTwo() {
     selectedPalette === "Neon" ? ELECTRIC_COLORS : PASTEL_COLORS;
 
   const filteredColors = currentPalette.filter((color) => {
-    return (
-      color.name.toLowerCase().includes(searchQuery) ||
-      color.hex.toLowerCase().includes(searchQuery)
-    );
+    return color.name.includes(searchQuery) || color.hex.includes(searchQuery);
   });
 
   const visibleColors = filteredColors.slice(startIndex, startIndex + 5);
