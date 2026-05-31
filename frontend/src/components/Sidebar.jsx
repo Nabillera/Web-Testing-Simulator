@@ -2,14 +2,18 @@ import Ladybug from "../assets/white-outline-bugs/ladybug-white.png";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export function Sidebar({
   location,
   onViewRequirements,
   onViewReport,
   onCompleteLevel,
-  onNavigation
+  onNavigation,
 }) {
+  // TEMPORARY LINE
+  const { currentUser } = useAuth();
+
   const isLevelOpen = location.pathname.startsWith("/level-");
 
   const handleRequirementsModal = () => {
@@ -43,6 +47,10 @@ export function Sidebar({
         <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
           <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
           <span>Leaderboard</span>
+        </div>
+        <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
+          <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
+          <span>{currentUser?.email}</span>
         </div>
       </div>
       {isLevelOpen && (

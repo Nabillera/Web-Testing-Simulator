@@ -8,7 +8,7 @@ import {
 import { createPortal } from "react-dom";
 import { Sidebar } from "./components/Sidebar";
 import { LandingPage } from "./components/LandingPage";
-import { SignUpPage } from "./components/Sign_Up/SignUpPage";
+import { AuthenticationPage } from "./components/Sign_Up/AuthenticationPage";
 import { LevelZero } from "./components/Level_0/LevelZero";
 import { LevelOne } from "./components/Level_1/LevelOne";
 import { LevelTwo } from "./components/Level_2/LevelTwo";
@@ -169,8 +169,8 @@ export function AppContent() {
         />
       )}
       <Routes>
-        <Route path="/sign-in" element={<SignUpPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/sign-in" element={<AuthenticationPage />} />
+        <Route path="/sign-up" element={<AuthenticationPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/level-0" element={<LevelZero />} />
         <Route path="/level-1" element={<LevelOne />} />
