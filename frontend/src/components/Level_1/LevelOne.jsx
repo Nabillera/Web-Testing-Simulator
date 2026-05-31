@@ -84,6 +84,7 @@ export function LevelOne() {
         {PRODUCTS.map((product) => {
           return (
             <ProductCard
+              key={product.name}
               prodName={product.name}
               prodPrice={product.price}
               prodImage={product.image}
@@ -95,10 +96,11 @@ export function LevelOne() {
       </div>
       <div className="flex justify-center gap-x-[40px] w-full">
         <div className="w-[30%]">
-          {selectedProducts.map((product) => {
+          {selectedProducts.map((product, idx) => {
             if (product.quantity > 0)
               return (
                 <SelectedProduct
+                  key={idx}
                   prodName={product.name}
                   quantity={product.quantity}
                   totalPrice={product.totalPrice}

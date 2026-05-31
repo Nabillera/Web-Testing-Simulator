@@ -21,7 +21,7 @@ export function Header() {
           <span className="font-pixelify text-[#F3AE39]">O</span>
           <span className="font-pixelify text-[#E75809]">T</span>
           <span className="font-pixelify text-[#C1011A]">H</span>
-          <span className="font-pixelify text-white">?</span>
+          <span className="font-pixelify text-[#0A5598]">?</span>
         </div>
       </Link>
 

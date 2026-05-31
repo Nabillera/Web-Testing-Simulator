@@ -36,8 +36,8 @@ export function RequirementsModal({
           {requirements.heading}
         </span>
         <div className="font-inconsolata">
-          {requirements.paragraphs.map((paragraph) => (
-            <p className="my-[15px] text-[18px]">{paragraph}</p>
+          {requirements.paragraphs.map((paragraph, idx) => (
+            <p key={idx} className="my-[15px] text-[18px]">{paragraph}</p>
           ))}
         </div>
         <button

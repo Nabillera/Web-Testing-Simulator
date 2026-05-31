@@ -68,7 +68,7 @@ export function LandingPage() {
           </div>
           {TITLES.slice(1).map((title, idx) => {
             return (
-              <div className="flex flex-col items-center gap-y-[25px] my-[35px]">
+              <div key={idx} className="flex flex-col items-center gap-y-[25px] my-[35px]">
                 <span className="font-inconsolata text-[24px]">{title}</span>
                 <Link to={`/level-${idx + 1}`}>
                   <Button

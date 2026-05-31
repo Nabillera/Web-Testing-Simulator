@@ -50,7 +50,7 @@ export function ReportForm({ onClose, level, sessionId }) {
         <div className="font-pixelify self-center text-[36px] font-bold">
           <span>CAUGHT THE </span>
           <span className="text-[#0A5598]">M</span>
-          <span className="text-[#F3AE39]">O</span>
+          <span className="text-[#FCF6B8]">O</span>
           <span className="text-[#E75809]">T</span>
           <span className="text-[#C1011A]">H</span>
           <span>?</span>

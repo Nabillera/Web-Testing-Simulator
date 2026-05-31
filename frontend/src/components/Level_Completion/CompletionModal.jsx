@@ -53,6 +53,7 @@ export function CompletionModal({ completionSummary, onClose }) {
           {completionSummary.evaluations.map((report, idx) => {
             return (
               <ReportCard
+                key={idx}
                 bugIcon={report.icon}
                 idx={idx + 1}
                 title={report.matchedBugTitle}
