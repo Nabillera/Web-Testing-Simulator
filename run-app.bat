@@ -1,7 +1,34 @@
 @echo off
+title Web Testing Simulator
 
-start cmd /k "cd backend && npm start"
+echo Starting Web Testing Simulator...
+echo.
 
-start cmd /k "cd nlp-service && venv\Scripts\activate && python -m uvicorn app.main:app --reload"
+set ROOT=%~dp0
 
-start cmd /k "cd frontend && npm run dev"
+echo Starting Backend...
+start "Backend" cmd /k "cd /d "%ROOT%backend" && npm start"
+
+timeout /t 2 >nul
+
+echo Starting NLP Service...
+start "NLP Service" cmd /k "cd /d "%ROOT%nlp-service" && call venv\Scripts\activate && python -m uvicorn app.main:app --reload"
+
+timeout /t 2 >nul
+
+echo Starting Frontend...
+start "Frontend" cmd /k "cd /d "%ROOT%frontend" && npm run dev"
+
+echo.
+echo ========================================
+echo All services launched
+echo ========================================
+echo.
+echo Frontend: http://localhost:5173
+echo Backend:  http://localhost:5000
+echo NLP:      http://localhost:8000
+echo.
+echo Do not close the opened terminal windows.
+echo.
+
+pause
