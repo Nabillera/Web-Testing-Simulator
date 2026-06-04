@@ -37,7 +37,7 @@ export function Sidebar({
           <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
           <span>Home</span>
         </div>
-        <div className="flex items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
+        <div className="hidden items-center gap-x-[15px] cursor-pointer py-[3px] pl-[10px] pr-[50px] hover:bg-[#272727] rounded-[4px]">
           <img src={Ladybug} className="w-[42px] h-[46px] rotate-90" />
           <span>Leaderboard</span>
         </div>
