@@ -1,7 +1,7 @@
 import spacy
 from app.bug_db import BUGS_BY_LEVELS
 
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_sm")
 
 def calculate_similarity(user_text, reference_examples):
 	if not user_text:
