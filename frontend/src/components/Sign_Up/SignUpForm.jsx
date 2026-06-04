@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../Button";
 import { TextInputField } from "../TextInputField";
 import { useState } from "react";
@@ -95,6 +96,7 @@ export function SignUpForm({ onAnonymousLogin }) {
           label="Password"
           placeholder="Enter your password"
           outlineColor="#F3AE39"
+          isPassword={true}
         />
         <TextInputField
           value={userCredentials.confirmPassword}
@@ -108,6 +110,7 @@ export function SignUpForm({ onAnonymousLogin }) {
           label="Confirm Password"
           placeholder="Confirm your password"
           outlineColor="#F3AE39"
+          isPassword={true}
         />
       </div>
       {error && (
@@ -119,12 +122,19 @@ export function SignUpForm({ onAnonymousLogin }) {
         <Button onClick={handleSignUp} backColor="#F3AE39" width="275px">
           Sign Up
         </Button>
-        <button
-          onClick={onAnonymousLogin}
-          className="font-inconsolata font-bold text-[20px] cursor-pointer"
-        >
-          Continue without an account
-        </button>
+        <div className="flex flex-col items-center">
+          <Link to="/sign-in">
+            <span className="font-inconsolata font-bold text-[20px] cursor-pointer">
+              Sign In
+            </span>
+          </Link>
+          <button
+            onClick={onAnonymousLogin}
+            className="font-inconsolata font-bold text-[20px] cursor-pointer"
+          >
+            Continue without an account
+          </button>
+        </div>
       </div>
     </div>
   );

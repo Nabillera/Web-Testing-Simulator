@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../Button";
 import { TextInputField } from "../TextInputField";
 import { useState } from "react";
@@ -40,6 +41,7 @@ export function SignInForm({ onAnonymousLogin }) {
               email: event.target.value,
             }))
           }
+          textSize="20px"
           label="Email"
           placeholder="Enter your email address"
           outlineColor="#F3AE39"
@@ -52,9 +54,11 @@ export function SignInForm({ onAnonymousLogin }) {
               password: event.target.value,
             }))
           }
+          textSize="20px"
           label="Password"
           placeholder="Enter your password"
           outlineColor="#F3AE39"
+          isPassword={true}
         />
       </div>
       {error && (
@@ -62,16 +66,23 @@ export function SignInForm({ onAnonymousLogin }) {
           {error}
         </span>
       )}
-      <div className="flex flex-col items-center gap-y-[15px] mt-[20px]">
+      <div className="flex flex-col items-center gap-y-[10px] mt-[20px]">
         <Button onClick={handleSignIn} backColor="#F3AE39" width="275px">
           Sign In
         </Button>
-        <button
-          onClick={onAnonymousLogin}
-          className="font-inconsolata font-bold text-[20px] cursor-pointer"
-        >
-          Continue without an account
-        </button>
+        <div className="flex flex-col items-center">
+          <Link to="/sign-up">
+            <span className="font-inconsolata font-bold text-[20px] cursor-pointer">
+              Sign Up
+            </span>
+          </Link>
+          <button
+            onClick={onAnonymousLogin}
+            className="font-inconsolata font-bold text-[20px] cursor-pointer"
+          >
+            Continue without an account
+          </button>
+        </div>
       </div>
     </div>
   );

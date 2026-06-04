@@ -9,6 +9,7 @@ export function TextInputField({
   onChange,
   multiline = false,
   rows = 2,
+  isPassword
 }) {
   return (
     <div style={{ width: width }} className="flex flex-col">
@@ -29,6 +30,7 @@ export function TextInputField({
         />
       ) : (
         <input
+          type={isPassword ? "password" : ""}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
