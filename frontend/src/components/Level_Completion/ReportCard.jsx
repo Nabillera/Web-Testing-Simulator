@@ -86,8 +86,8 @@ export function ReportCard({
           className={`overflow-hidden transition-all duration-300 ${openDropdowns.feedback ? "max-h-[300px]" : "max-h-0"}`}
         >
           <ol>
-            {feedback.map((statement) => (
-              <li>&bull; {statement}</li>
+            {feedback.map((statement, idx) => (
+              <li key={idx}>&bull; {statement}</li>
             ))}
           </ol>
         </div>
