@@ -67,7 +67,7 @@ git clone https://github.com/Nabillera/Web-Testing-Simulator.git
 
 Place the provided Firebase service account key in:
 ```
-backend/config/serviceAccountKey.json
+backend/config/firebaseKey.json
 ```
 
 Run the setup script:
