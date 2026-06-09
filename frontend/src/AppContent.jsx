@@ -15,6 +15,8 @@ import { LevelTwo } from "./components/Level_2/LevelTwo";
 import { LevelThree } from "./components/Level_3/LevelThree";
 import { LevelFour } from "./components/Level_4/LevelFour";
 import { RequirementsModal } from "./components/Modals/RequirementsModal";
+import { ReportHintsModal } from "./components/Modals/ReportHintsModal";
+import DocIcon from "./assets/doc-icon.svg";
 import { ReportForm } from "./components/Modals/ReportForm";
 import { REQUIREMENTS } from "../DATA/Level_requirements";
 import { WarningModal } from "./components/Modals/WarningModal";
@@ -28,6 +30,7 @@ export function AppContent() {
   const [requirementsOpen, setRequirementsOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
+  const [hintsOpen, setHintsOpen] = useState(false);
   const [pendingNavigation, setPendingNavigation] = useState(null);
   const [loading, setLoading] = useState({
     active: false,
@@ -46,16 +49,14 @@ export function AppContent() {
 
   const location = useLocation();
   const levelId = location.pathname.split("-")[1];
+  const isLevelOpen = location.pathname.startsWith("/level-");
   const hideSidebar =
     location.pathname == "/sign-up" || location.pathname == "/sign-in";
   const navigate = useNavigate();
-  const { currentUser } = useAuth;
+  const { currentUser } = useAuth();
 
   const handleNavigation = (destination) => {
-    if (
-      location.pathname.startsWith("/level-") &&
-      sessionTracking.sessionStarted
-    ) {
+    if (isLevelOpen && sessionTracking.sessionStarted) {
       setPendingNavigation(destination);
       setWarningOpen(true);
       return;
@@ -91,7 +92,7 @@ export function AppContent() {
   };
 
   const handleReportForm = () => {
-    setReportOpen(() => !reportOpen);
+    setReportOpen((prev) => !prev);
   };
 
   const handleCompletionModal = () => {
@@ -143,7 +144,7 @@ export function AppContent() {
       startTime: null,
       elapsedTime: 0,
     });
-    if (location.pathname.startsWith("/level-")) {
+    if (isLevelOpen) {
       setRequirementsOpen(true);
     }
   }, [location.pathname]);
@@ -182,7 +183,14 @@ export function AppContent() {
         <Route path="/level-3" element={<LevelThree />} />
         <Route path="/level-4" element={<LevelFour />} />
       </Routes>
-
+      {isLevelOpen && (
+        <img
+          onClick={() => setHintsOpen(true)}
+          src={DocIcon}
+          title="Bug report hints!"
+          className="absolute top-[122px] right-[50px] cursor-pointer"
+        />
+      )}
       {requirementsOpen &&
         createPortal(
           <RequirementsModal
@@ -223,6 +231,12 @@ export function AppContent() {
       {loading.active &&
         createPortal(
           <LoadingModal loadingMessage={loading.message} />,
+          document.body,
+        )}
+
+      {hintsOpen &&
+        createPortal(
+          <ReportHintsModal onClose={() => setHintsOpen(false)} />,
           document.body,
         )}
     </div>

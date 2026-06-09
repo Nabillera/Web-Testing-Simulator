@@ -21,13 +21,9 @@ export const REQUIREMENTS = [
     heading: "Level 2: Color cards - Requirements",
     paragraphs: [
       "This module provides an interactive colour palette explorer supporting multiple selectable colour themes. Users should be able to switch between available palettes using the dropdown selector positioned at the top of the page.",
-
       "Each palette should display colour cards containing a visual colour preview, colour name, hexadecimal value, and a button for copying the HEX code.",
-
       "The search field should allow users to filter colours by either colour name or hexadecimal value. Search functionality should operate in real time and should not be case-sensitive.",
-
       "Pagination controls should be available to the user to allow navigation through all the color cards in the selected palette",
-
       "Selecting the copy action should copy the corresponding hexadecimal value to the clipboard and provide visible confirmation feedback to the user.",
     ],
   },
