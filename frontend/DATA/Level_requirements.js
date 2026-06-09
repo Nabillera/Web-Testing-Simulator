@@ -43,7 +43,7 @@ export const REQUIREMENTS = [
       "Theme selection should allow users to switch between available visual themes. Selecting a theme should immediately apply the corresponding interface styling across the entire settings page.",
       "The account information section should present editable user information including email address, phone number, password, and preference settings.",
       "Display customization sliders should allow users to adjust visual preview elements in real time. Changes to slider position should immediately update the associated preview box.The icon size preview should scale proportionally according to the selected slider value. Brightness adjustment controls should affect the preview element and maintain smooth transitions.",
-      "Selecting 'Save Changes' should preserve all currently selected settings and provide visible confirmation that preferences were successfully updated. Refreshing the page by clicking the designated button should preserve previously saved user settings.",
+      "Selecting 'Save Changes' should preserve all currently selected settings and provide visible confirmation that preferences were successfully updated. Refreshing the page by clicking the designated button should preserve previously saved user settings and it should NOT take more than 3 seconds.",
     ],
   },
 ];

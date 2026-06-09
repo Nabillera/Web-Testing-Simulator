@@ -43,9 +43,10 @@ export function LevelFour() {
   };
 
   const handleRefresh = () => {
-    const delay = Math.random() * 9000 + 1;
+    const delay = Math.random() * 9000 + 1000;
 
     setIsRefreshing(true);
+    setSelectedTheme(INITIAL_THEME);
 
     setTimeout(() => {
       setToggleOn(INITIAL_TOGGLES);
@@ -71,6 +72,12 @@ export function LevelFour() {
             500 Internal Server Error
           </span>
           <span>Something went wrong :(</span>
+          <span
+            onClick={handleRefresh}
+            className="mt-[20px] font-inconsolata text-[#0A5598] text-[18px] font-bold hover:text-[#0A5598]/50 cursor-pointer"
+          >
+            Refresh Page
+          </span>
         </div>
       ) : isRefreshing ? (
         <div className="w-full h-full flex flex-col items-center justify-center gap-y-[20px] bg-[#F2F2F2]">
