@@ -89,13 +89,13 @@ def evaluate_report(report):
 			feedback.append("Bug severity is correct!")
 		else:
 			rule_score -= 10
-			feedback.append(f"Expected bug severity: {best_bug_match["valid_severity"]}")
+			feedback.append(f"Expected bug severity: {best_bug_match['valid_severity']}")
 		
 		if bug_type_match:
 			feedback.append("Bug type is correct!")
 		else:
 			rule_score -= 10
-			feedback.append(f"Expected bug type: {best_bug_match["valid_type"]}")
+			feedback.append(f"Expected bug type: {best_bug_match['valid_type']}")
   
 	feedback.append(generate_feedback("Title", best_section_scores["title"]))
 	feedback.append(generate_feedback("Reproduction Steps", best_section_scores["stepsToReproduce"]))
