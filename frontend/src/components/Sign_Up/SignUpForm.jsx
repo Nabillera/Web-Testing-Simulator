@@ -56,8 +56,8 @@ export function SignUpForm({ onAnonymousLogin }) {
   };
   return (
     <div className="absolute flex flex-col w-[620px] h-fit p-[30px] gap-y-[10px] items-center border-2 rounded-[30px] bg-[#F2F2F2]/90">
-      <span className="font-pixelify font-bold text-[42px]">Sign Up</span>
-      <div className="flex flex-col w-full font-inconsolata text-[48px] gap-y-[20px]">
+      <span className="font-pixelify font-bold text-[36px]">Sign Up</span>
+      <div className="flex flex-col w-full font-inconsolata text-[48px] gap-y-[10px]">
         <TextInputField
           value={userCredentials.username}
           onChange={(event) =>
@@ -66,7 +66,7 @@ export function SignUpForm({ onAnonymousLogin }) {
               username: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Username"
           placeholder="Enter your username"
           outlineColor="#F3AE39"
@@ -79,7 +79,7 @@ export function SignUpForm({ onAnonymousLogin }) {
               email: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Email Address"
           placeholder="Enter your email address"
           outlineColor="#F3AE39"
@@ -92,7 +92,7 @@ export function SignUpForm({ onAnonymousLogin }) {
               password: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Password"
           placeholder="Enter your password"
           outlineColor="#F3AE39"
@@ -106,7 +106,7 @@ export function SignUpForm({ onAnonymousLogin }) {
               confirmPassword: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Confirm Password"
           placeholder="Confirm your password"
           outlineColor="#F3AE39"
@@ -118,19 +118,19 @@ export function SignUpForm({ onAnonymousLogin }) {
           {error}
         </span>
       )}
-      <div className="flex flex-col items-center gap-y-[15px] mt-[20px]">
-        <Button onClick={handleSignUp} backColor="#F3AE39" width="275px">
+      <div className="flex flex-col items-center gap-y-[5px] mt-[20px]">
+        <Button onClick={handleSignUp} backColor="#F3AE39" width="275px" textSize="24px">
           Sign Up
         </Button>
         <div className="flex flex-col items-center">
           <Link to="/sign-in">
-            <span className="font-inconsolata font-bold text-[20px] cursor-pointer">
+            <span className="font-inconsolata font-bold text-[16px] cursor-pointer">
               Sign In
             </span>
           </Link>
           <button
             onClick={onAnonymousLogin}
-            className="font-inconsolata font-bold text-[20px] cursor-pointer"
+            className="font-inconsolata font-bold text-[16px] cursor-pointer"
           >
             Continue without an account
           </button>

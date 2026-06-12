@@ -21,7 +21,7 @@ export function LevelZero() {
 
   return (
     <div className="flex flex-col w-[80%] items-center gap-y-[180px] p-[30px]">
-      <h2 className="font-pixelify font-bold text-[40px]">
+      <h2 className="font-pixelify font-bold text-[32px]">
         Level 0: Polish the magnifying glass
       </h2>
       <div className="flex flex-col gap-y-[40px] w-[70%] items-center">

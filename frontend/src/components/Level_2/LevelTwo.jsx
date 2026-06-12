@@ -39,8 +39,8 @@ export function LevelTwo() {
   const visibleColors = filteredColors.slice(startIndex, startIndex + 5);
 
   return (
-    <div className="flex flex-col w-[80%] items-center gap-y-[120px] p-[30px]">
-      <h2 className="font-pixelify font-bold text-[40px]">
+    <div className="flex flex-col w-[90%] items-center gap-y-[40px] p-[30px]">
+      <h2 className="font-pixelify font-bold text-[32px]">
         Level 2: Red, pink, orange, blue
       </h2>
 

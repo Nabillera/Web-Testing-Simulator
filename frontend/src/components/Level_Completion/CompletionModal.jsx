@@ -18,7 +18,7 @@ export function CompletionModal({ completionSummary, onClose }) {
 
   return (
     <div className="absolute z-11 flex justify-center items-center w-full h-full backdrop-blur-sm transition-all duration-[1500ms] ease-out">
-      <div className="flex flex-col justify-between items-center font-inconsolata bg-[#D9D9D9] w-[90%] h-[90%] rounded-[20px] border-2 p-[20px]">
+      <div className="flex flex-col justify-between items-center gap-y-[10px] font-inconsolata bg-[#D9D9D9] w-[90%] h-[90%] rounded-[20px] border-2 p-[20px]">
         <div className="flex items-center gap-x-[30px]">
           <img
             src={Ant}

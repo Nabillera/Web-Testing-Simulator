@@ -5,7 +5,7 @@ import { BUG_ICONS } from "../../../DATA/Completion_modal_icons";
 export function ReportHintsModal({ onClose }) {
   return (
     <div className="absolute flex justify-center items-center w-full h-full bg-black/80 z-5">
-      <div className="w-[60%] h-[70%] flex items-center flex-col rounded-[20px] border-2 bg-[#D9D9D9]/80 p-[30px]">
+      <div className="w-[85%] h-[80%] flex items-center flex-col rounded-[20px] border-2 bg-[#D9D9D9]/80 p-[30px]">
         <p className="font-pixelify text-[32px] font-bold tracking-widest">
           REPORT RECOMMENDATIONS
         </p>

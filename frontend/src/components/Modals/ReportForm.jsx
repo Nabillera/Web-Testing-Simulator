@@ -58,8 +58,8 @@ export function ReportForm({
   };
 
   return (
-    <div className="absolute w-full h-full flex justify-center items-center bg-black/80 z-5">
-      <div className=" flex flex-col gap-y-[10px] p-[20px] w-[650px] self-center bg-[#D9D9D9]/90 rounded-[20px] border-2 ">
+    <div className="absolute w-full h-full flex justify-center items-center bg-black/80 z-10">
+      <div className=" flex flex-col gap-y-[5px] p-[20px] w-[650px] self-center bg-[#D9D9D9]/90 rounded-[20px] border-2 ">
         <div className="font-pixelify self-center text-[36px] font-bold">
           <span>CAUGHT THE </span>
           <span className="text-[#0A5598]">M</span>
@@ -85,7 +85,7 @@ export function ReportForm({
             outlineColor="#0A5598"
             textSize="16px"
             multiline={true}
-            rows={5}
+            rows={3}
           />
           <TextInputField
             onChange={(event) =>
@@ -130,11 +130,11 @@ export function ReportForm({
           <Button
             onClick={handleCloseModal}
             backColor="#C1011A"
-            textSize="24px"
+            textSize="20px"
           >
             Cancel
           </Button>
-          <Button onClick={handleSubmit} backColor="#C1011A" textSize="24px">
+          <Button onClick={handleSubmit} backColor="#C1011A" textSize="20px">
             Submit
           </Button>
         </div>

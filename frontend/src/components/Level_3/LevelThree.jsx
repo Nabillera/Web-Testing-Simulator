@@ -70,8 +70,8 @@ export function LevelThree() {
   };
 
   return (
-    <div className="flex flex-col w-[80%] items-center p-[20px] pt-[10px]">
-      <h2 className="font-pixelify font-bold text-[40px]">
+    <div className="flex flex-col w-[90%] items-center p-[20px] pt-[10px] overflow-y-scroll">
+      <h2 className="font-pixelify font-bold text-[32px]">
         Level 3: Intuition is your best friend
       </h2>
       <div className="flex flex-col gap-y-[10px] w-[95%] items-center bg-[#D9D9D9] border-2 rounded-[20px] p-[15px] shadow-[8px_8px_15px_rgba(0,0,0,0.4)]">

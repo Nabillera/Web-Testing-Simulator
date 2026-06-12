@@ -17,10 +17,10 @@ export function ColorCard({ color, name, isNeon }) {
   };
 
   return (
-    <div>
+    <div className="w-[19%]">
       <div
         style={{ backgroundColor: color }}
-        className="flex justify-end items-end rounded-t-[10px] w-[200px] h-[160px]"
+        className="flex justify-end items-end rounded-t-[10px] w-full h-[160px]"
       >
         {isCopied && (
           <div

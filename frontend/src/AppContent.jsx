@@ -163,7 +163,7 @@ export function AppContent() {
   }, [sessionTracking.sessionStarted, sessionTracking.startTime]);
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full overflow-hidden">
       {!hideSidebar && (
         <Sidebar
           location={location}

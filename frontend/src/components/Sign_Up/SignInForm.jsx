@@ -31,7 +31,7 @@ export function SignInForm({ onAnonymousLogin }) {
   };
   return (
     <div className="absolute flex flex-col w-[620px] h-fit p-[30px] gap-y-[10px] items-center border-2 rounded-[30px] bg-[#F2F2F2]/90">
-      <span className="font-pixelify font-bold text-[42px]">Sign In</span>
+      <span className="font-pixelify font-bold text-[36px]">Sign In</span>
       <div className="flex flex-col w-full font-inconsolata text-[48px] gap-y-[20px]">
         <TextInputField
           value={userCredentials.email}
@@ -41,7 +41,7 @@ export function SignInForm({ onAnonymousLogin }) {
               email: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Email"
           placeholder="Enter your email address"
           outlineColor="#F3AE39"
@@ -54,7 +54,7 @@ export function SignInForm({ onAnonymousLogin }) {
               password: event.target.value,
             }))
           }
-          textSize="20px"
+          textSize="16px"
           label="Password"
           placeholder="Enter your password"
           outlineColor="#F3AE39"
@@ -67,18 +67,18 @@ export function SignInForm({ onAnonymousLogin }) {
         </span>
       )}
       <div className="flex flex-col items-center gap-y-[10px] mt-[20px]">
-        <Button onClick={handleSignIn} backColor="#F3AE39" width="275px">
+        <Button onClick={handleSignIn} backColor="#F3AE39" width="275px" textSize="24px">
           Sign In
         </Button>
         <div className="flex flex-col items-center">
           <Link to="/sign-up">
-            <span className="font-inconsolata font-bold text-[20px] cursor-pointer">
+            <span className="font-inconsolata font-bold text-[16px] cursor-pointer">
               Sign Up
             </span>
           </Link>
           <button
             onClick={onAnonymousLogin}
-            className="font-inconsolata font-bold text-[20px] cursor-pointer"
+            className="font-inconsolata font-bold text-[16px] cursor-pointer"
           >
             Continue without an account
           </button>

@@ -61,9 +61,9 @@ export function LevelFour() {
         backgroundColor: selectedTheme == "dark" ? "#282828" : "",
         color: selectedTheme == "dark" ? "#F2F2F2" : "#000000",
       }}
-      className="flex flex-col w-full items-center gap-y-[10px] p-[15px]"
+      className="flex flex-col w-[90%] items-center gap-y-[10px] p-[15px] overflow-y-scroll"
     >
-      <h2 className="font-pixelify font-bold text-[40px]">
+      <h2 className="font-pixelify font-bold text-[32px]">
         Level 4: No, I do NOT want notifications
       </h2>
       {selectedTheme == "surprise" ? (
@@ -120,7 +120,7 @@ export function LevelFour() {
               <AccountInfoSection />
               <div className="flex flex-col items-center">
                 <Button
-                  width="50%"
+                  width="60%"
                   backColor="#C1011A"
                   textColor="#F2F2F2"
                   textSize="24px"

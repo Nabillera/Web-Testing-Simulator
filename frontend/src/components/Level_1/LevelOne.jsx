@@ -75,50 +75,53 @@ export function LevelOne() {
   };
 
   return (
-    <div className="relative flex flex-col w-[80%] items-center gap-y-[50px] p-[30px]">
-      <h2 className="font-pixelify font-bold text-[40px]">
+    <div className="relative flex flex-col w-full items-center gap-y-[30px] p-[30px] overflow-y-scroll">
+      <h2 className="font-pixelify font-bold text-[32px]">
         Level 1: Don't put all your bugs in one basket!
       </h2>
-      <div className="flex w-[70%] justify-around">
-        {PRODUCTS.map((product) => {
-          return (
-            <ProductCard
-              key={product.name}
-              prodName={product.name}
-              prodPrice={product.price}
-              prodImage={product.image}
-              color={product.color}
-              onAdd={handleAddProduct}
-            />
-          );
-        })}
-      </div>
-      <div className="flex justify-center gap-x-[40px] w-full">
-        <div className="w-[30%]">
-          {selectedProducts.map((product, idx) => {
-            if (product.addedToBasket)
-              return (
-                <SelectedProduct
-                  key={idx}
-                  prodName={product.name}
-                  quantity={product.quantity}
-                  totalPrice={product.totalPrice}
-                  onIncrement={handleIncrementQuantity}
-                  onDecrement={handleDecrementQuantity}
-                />
-              );
+      <div className="w-full flex flex-col items-center gap-y-[20px]">
+        <div className="flex w-[85%] justify-around">
+          {PRODUCTS.map((product) => {
+            return (
+              <ProductCard
+                key={product.name}
+                prodName={product.name}
+                prodPrice={product.price}
+                prodImage={product.image}
+                color={product.color}
+                onAdd={handleAddProduct}
+              />
+            );
           })}
         </div>
-        <div className="flex flex-col gap-y-[20px] w-[30%]">
-          <div className="flex gap-x-[10px]">
-            <span className="font-bold text-[32px]">Your total:</span>
-            <span className="text-[32px]">{`$${totalPrice}`}</span>
+        <div className="flex justify-center gap-x-[40px] w-full">
+          <div className="w-[30%]">
+            {selectedProducts.map((product, idx) => {
+              if (product.addedToBasket)
+                return (
+                  <SelectedProduct
+                    key={idx}
+                    prodName={product.name}
+                    quantity={product.quantity}
+                    totalPrice={product.totalPrice}
+                    onIncrement={handleIncrementQuantity}
+                    onDecrement={handleDecrementQuantity}
+                  />
+                );
+            })}
           </div>
-          <Button onClick={handleShowModal} backColor="#C1011A" width="250px">
-            Purchase
-          </Button>
+          <div className="flex flex-col gap-y-[20px] w-[30%]">
+            <div className="flex gap-x-[10px]">
+              <span className="font-bold text-[32px]">Your total:</span>
+              <span className="text-[32px]">{`$${totalPrice}`}</span>
+            </div>
+            <Button onClick={handleShowModal} backColor="#C1011A" width="250px">
+              Purchase
+            </Button>
+          </div>
         </div>
       </div>
+
       {showPurchaseModal && (
         <PurchaseModal
           onHandleModal={handleShowModal}
